@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+   <div th:replace="fragments/header :: header"></div>
+
+</head>
+<body>
+
+    <div th:replace="fragments/menu :: menu"></div>
+
+    <!-- Body stornki -->
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Welcome to my Bookstore !</h1>
+
+
+            <img src="../static/images/welcomePage.png" width="1000"
+                 th:src="@{images/welcomePage.png}"/>
+            <br>
+
+
+            <br>
+            <br>
+
+
+            <br>
+            <h2>Choose most beautiful story.</h2>
+
+
+        </div>
+    </div>
+
+    <div th:replace="fragments/footer :: footer"></div>
+
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+
+    <div th:replace="fragments/header :: header"></div>
+
+</head>
+<body>
+
+<div th:replace="fragments/menu :: menu"></div>
+
+<br>
+<br>
+<!-- Create HTML registration form -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">  <!--//css bootstrap umiejscowienie w przestrzeni -->
+
+            <!-- success message -->
+            <div th:if="${param.success}"> <!-- SUCCES ma wtyczkę w UserRegistrationnController @PostMappung -> "redirect:/registration?succes" -->
+                <div class="alert alert-info">You've successfully registered         <!-- Jeżeli warunek param jest spełniony ->wyświetl ten tekst -->
+                    to our awesome app!</div>
+            </div>
+
+            <h2>Registration</h2>      <!-- nagłówek -->
+
+            <form th:action="@{/registration}" method="post" th:object="${user}"> <!-- @ - context path of the application/  /registration -przekierowanie do UserTegistrationCOntroller - do POST REQuesta-->
+                <div class="form-group">         <!-- user powyzej tworzy nowy obiekt user na podstawie metody UserREgistrationDto w UserRegistrationController -->
+                    <label class="control-label" for="firstName"> First Name </label>
+                    <input id="firstName" class="form-control" th:field="*{firstName}"
+                           required autofocus="autofocus" />                           <!-- ^{firstName} - odnosi się do zmienner tworzonego Usera -->
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="lastName"> Last Name </label> <input
+                        id="lastName" class="form-control" th:field="*{lastName}"
+                        required autofocus="autofocus" />
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="email"> Email </label> <input
+                        id="email" class="form-control" th:field="*{email}" required
+                        autofocus="autofocus" />
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="password"> Password </label> <input
+                        id="password" class="form-control" type="password"
+                        th:field="*{password}" required autofocus="autofocus" />
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Register</button>
+                    <span>Already registered? <a href="/" th:href="@{/login}">Login
+								here</a></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
