@@ -1,6 +1,10 @@
 package com.example.myBookstore.model;
 
+import com.example.myBookstore.model.Role;
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 

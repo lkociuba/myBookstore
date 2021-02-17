@@ -1,9 +1,22 @@
 package com.example.myBookstore.web.dto;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 public class UserRegistrationDto {
+
+    @Size(min = 2, max = 50, message = "First name length between 2 and 50")
     private String firstName;
+
+    //@Size(min = 2, max = 50, message = "First name length between 2 and 50")
     private String lastName;
+
+    @NotEmpty(message = "Email is required")
+    @Email(message = "Email is invalid")
     private String email;
+
+    @NotEmpty(message = "Password is required")
     private String password;
 
     public UserRegistrationDto(){}

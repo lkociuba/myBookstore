@@ -1,4 +1,4 @@
-package com.example.myBookstore.repository;
+package com.example.myBookstore.dao;
 
 import com.example.myBookstore.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

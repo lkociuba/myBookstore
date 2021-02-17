@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <body>
 
@@ -11,7 +13,11 @@
 
         <nav>
             <ul>
-                <li><a href="/welcome">Home</a> </li>
+                <li><a href="/">Home</a> </li>
+                <li><a href="/bookList">Book list</a> </li>
+                <li><a href="/shoppingCart">Shopping Cart</a> </li>
+                <li><a sec:authorize="hasRole('EMPLOYEE')" href="/bookAdd">Add new book</a> </li>
+                <li><a href="/paginatedBookList">Paginated Book List</a> </li>
                 <li><a href="/login">Login</a> </li>       <!-- Lista jest teraz najbardziej używana -->
                 <li><a href="/registration">Registration</a> </li>
                 <li><a href="/logout">Logout</a> </li>
@@ -21,5 +27,5 @@
 </header>
 
 
-</body>
-</html>
+
+

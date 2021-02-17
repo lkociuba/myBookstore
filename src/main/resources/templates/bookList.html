@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <div th:replace="fragments/header :: header"></div>
+
+</head>
+<body>
+
+    <div th:replace="fragments/menu :: menu"></div>
+
+    <br>
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+
+                <h2>Book list</h2>
+
+                <table class="table table-striped">
+                    <caption>Choose the best books for you.</caption>
+                    <tr>
+                        <th>Book Id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>CreationDate</th>
+                        <th></th>
+                    </tr>
+                    <tr th:each="book  :  ${books}">
+                        <td th:text="${book.bookId}"></td>
+                        <td th:text="${book.name}"></td>
+                        <td th:text="${book.description}"></td>
+                        <td th:text="${book.price}"></td>
+                        <td th:text="${#temporals.format(book.createdTime, 'dd/MMM/yyyy HH:mm')}"></td>
+                        <td>
+                            <a class="btn btn-success"  th:href="@{'buyBook/' + ${book.bookId}}">Buy</a>
+
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

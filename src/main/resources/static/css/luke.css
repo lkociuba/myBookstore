@@ -35,7 +35,7 @@ p {
 /*W Header znajduje się navigation bar */
 body {
     margin: 0;
-    background: radial-gradient(circle, saddlebrown, darkgrey);
+    background: radial-gradient(circle, whitesmoke,darkgrey);
 }
 
 /*Ogólnie dodaje do contenera all - SPRAWDZIĆ!!! - to co jest w container - np body robie w tym*/
@@ -98,4 +98,18 @@ nav a:hover{
     padding: 1rem;
     background-color: #efefef;
     text-align: center;
+}
+
+/* Formatowanie tabeli */
+table, th, td {
+    border: 1px solid black;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: khaki;
 }

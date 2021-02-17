@@ -2,7 +2,7 @@ package com.example.myBookstore.service;
 
 import com.example.myBookstore.model.Role;
 import com.example.myBookstore.model.User;
-import com.example.myBookstore.repository.UserRepository;
+import com.example.myBookstore.dao.UserRepository;
 import com.example.myBookstore.web.dto.UserRegistrationDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

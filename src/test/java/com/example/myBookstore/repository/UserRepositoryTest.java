@@ -1,5 +1,6 @@
 package com.example.myBookstore.repository;
 
+import com.example.myBookstore.dao.UserRepository;
 import com.example.myBookstore.model.Role;
 import com.example.myBookstore.model.User;
 import org.junit.jupiter.api.BeforeEach;
