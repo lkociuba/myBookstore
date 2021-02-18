@@ -9,7 +9,7 @@ public class UserRegistrationDto {
     @Size(min = 2, max = 50, message = "First name length between 2 and 50")
     private String firstName;
 
-    //@Size(min = 2, max = 50, message = "First name length between 2 and 50")
+    @Size(min = 2, max = 50, message = "First name length between 2 and 50")
     private String lastName;
 
     @NotEmpty(message = "Email is required")
@@ -19,7 +19,8 @@ public class UserRegistrationDto {
     @NotEmpty(message = "Password is required")
     private String password;
 
-    public UserRegistrationDto(){}
+    public UserRegistrationDto() {
+    }
 
     public UserRegistrationDto(String firstName, String lastName, String email, String password) {
         super();

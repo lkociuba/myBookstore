@@ -18,7 +18,8 @@ public class BookAddDto {
     @DecimalMin(value = "5.00", message = "Book price must be equal or greater than 5 PLN")
     private double price;
 
-    public BookAddDto(){}
+    public BookAddDto() {
+    }
 
     public BookAddDto(String name, String description, double price) {
         super();

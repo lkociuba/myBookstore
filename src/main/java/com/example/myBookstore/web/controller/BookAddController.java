@@ -21,20 +21,20 @@ public class BookAddController {
     private BookService bookService;
 
     @ModelAttribute("book")
-    public BookAddDto bookAddDto(){
+    public BookAddDto bookAddDto() {
         return new BookAddDto();
     }
 
     @GetMapping
-    public String showBookAddSide(){
+    public String showBookAddSide() {
         return "bookAdd";
     }
 
     @PostMapping
-    public String addNewBook(@Valid @ModelAttribute("book")BookAddDto bookAddDto,
-                             BindingResult bindingResult){
+    public String addNewBook(@Valid @ModelAttribute("book") BookAddDto bookAddDto,
+                             BindingResult bindingResult) {
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "bookAdd";
         }
 

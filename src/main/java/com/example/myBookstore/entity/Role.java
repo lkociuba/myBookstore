@@ -1,4 +1,4 @@
-package com.example.myBookstore.model;
+package com.example.myBookstore.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,19 +18,17 @@ public class Role {
     @ManyToMany(mappedBy = "roles")
     private Set<User> users = new HashSet<>();
 
-    public Role(){}
+    public Role() {
+    }
 
     public Role(String name) {
         super();
         this.name = name;
     }
 
-
-
     public Long getId() {
         return id;
     }
-
 
     public String getName() {
         return name;

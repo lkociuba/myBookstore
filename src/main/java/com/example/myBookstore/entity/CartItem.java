@@ -18,12 +18,12 @@ public class CartItem {
     @JoinColumn(name = "book_id")
     private Book book;
 
-
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_summary_id")
     private CartSummary cartSummary;
 
-    public CartItem() { }
+    public CartItem() {
+    }
 
     public CartItem(int quantity, Book book) {
         super();
@@ -33,10 +33,6 @@ public class CartItem {
 
     public Long getCartItemId() {
         return cartItemId;
-    }
-
-    public void setCartItemId(Long cartItemId) {
-        this.cartItemId = cartItemId;
     }
 
     public int getQuantity() {
@@ -63,8 +59,8 @@ public class CartItem {
         this.cartSummary = cartSummary;
     }
 
-    public double getAmount(){
-        double amount=0;
+    public double getAmount() {
+        double amount = 0;
         amount += this.quantity * this.book.getPrice();
         return amount;
     }

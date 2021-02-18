@@ -1,10 +1,6 @@
-package com.example.myBookstore.model;
-
-import com.example.myBookstore.model.Role;
-import com.sun.istack.NotNull;
+package com.example.myBookstore.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +17,6 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-
     private String email;
     private String password;
 
@@ -35,7 +30,8 @@ public class User {
     )
     private Set<Role> roles = new HashSet<>();
 
-    public User(){}
+    public User() {
+    }
 
     public User(String firstName, String lastName, String email, String password, Set<Role> roles) {
         super();
@@ -49,7 +45,6 @@ public class User {
     public Long getId() {
         return id;
     }
-
 
     public String getFirstName() {
         return firstName;

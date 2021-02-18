@@ -1,11 +1,7 @@
 package com.example.myBookstore.dao;
 
 import com.example.myBookstore.MyBookstoreApplication;
-import com.example.myBookstore.entity.Book;
-import com.example.myBookstore.entity.CartItem;
 import com.example.myBookstore.entity.CartSummary;
-import com.example.myBookstore.model.Role;
-import com.example.myBookstore.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -16,12 +12,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Arrays;
-import java.util.HashSet;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest

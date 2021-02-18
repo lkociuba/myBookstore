@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CartSummaryServiceImpl implements CartSummaryService{
+public class CartSummaryServiceImpl implements CartSummaryService {
 
     @Autowired
     private CartSummaryRepository cartSummaryRepository;
@@ -20,7 +20,6 @@ public class CartSummaryServiceImpl implements CartSummaryService{
 
     @Autowired
     private CartItemService cartItemService;
-
 
     @Override
     public List<CartSummary> findAllCartSummary() {
@@ -33,26 +32,17 @@ public class CartSummaryServiceImpl implements CartSummaryService{
     }
 
     @Override
-    public void deleteCartItemById(String cartSumaryId, String cartItemId) {
-        final Long longCartSummaryId = Long.valueOf(cartSumaryId);
-        final Long longCartItemId = Long.valueOf(cartItemId);
-
+    public void deleteCartItemById(Long cartSumaryId, Long cartItemId) {
         CartItem cartItem = null;
         CartSummary cartSummary = null;
 
-        if (longCartItemId != null && longCartSummaryId != null) {
-            //cartItem = cartItemRepository.findByCartItemId(longCartItemId);
-            cartItem = cartItemService.findByCartItemId(longCartItemId);
+        if (cartItemId != null && cartSumaryId != null) {
+            cartItem = cartItemService.findByCartItemId(cartItemId);
 
-            cartSummary = cartSummaryRepository.findByCartSummaryId(longCartSummaryId);
+            cartSummary = cartSummaryRepository.findByCartSummaryId(cartSumaryId);
             cartSummary.deleteCartItem(cartItem);
             cartItemRepository.delete(cartItem);
         }
-
         cartSummaryRepository.save(cartSummary);
-
-
     }
-
-
 }

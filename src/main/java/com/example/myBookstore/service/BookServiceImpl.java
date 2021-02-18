@@ -11,14 +11,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BookServiceImpl implements BookService {
 
     @Autowired
     private BookRepository bookRepository;
-
 
     @Override
     public List<Book> getAllBooks() {
@@ -34,7 +32,6 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findAll(pageable);
     }
 
-
     @Override
     public Book saveBook(BookAddDto bookAddDto) {
         Book book = new Book(bookAddDto.getName(), bookAddDto.getDescription(), bookAddDto.getPrice());
@@ -45,7 +42,5 @@ public class BookServiceImpl implements BookService {
     public Book findBookById(Long bookId) {
         return bookRepository.findByBookId(bookId);
     }
-
-
 }
 

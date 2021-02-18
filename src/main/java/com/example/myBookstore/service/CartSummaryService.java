@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface CartSummaryService {
     List<CartSummary> findAllCartSummary();
-    CartSummary findCartSummaryById(Long cartSummaryId);
-    void deleteCartItemById (String cartSumaryId, String cartItemId);
 
+    CartSummary findCartSummaryById(Long cartSummaryId);
+
+    void deleteCartItemById(Long cartSumaryId, Long cartItemId);
 }

@@ -1,7 +1,7 @@
 package com.example.myBookstore.service;
 
-import com.example.myBookstore.model.Role;
-import com.example.myBookstore.model.User;
+import com.example.myBookstore.entity.Role;
+import com.example.myBookstore.entity.User;
 import com.example.myBookstore.dao.UserRepository;
 import com.example.myBookstore.web.dto.UserRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,6 @@ public class UserServiceImpl implements UserService {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(username);
@@ -47,5 +46,4 @@ public class UserServiceImpl implements UserService {
         }
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
     }
-
 }

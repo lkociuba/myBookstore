@@ -8,19 +8,18 @@ import java.util.List;
 
 public interface CartItemService {
     List<CartItem> findAllCartItems();
+
     CartItem findByCartItemId(Long cartItemId);
 
-    Long convertIdFromStringToLong (String id);
-    CartItem createCartItemWithBook (Book book);
+    CartItem createCartItemWithBook(Book book);
 
-    CartItem addBookToCartItem (String bookId);
-    void deleteCartItem(String cartItemId);
-    void removeOneCartItem (String cartItemId, String cartSummaryId);
-    void addOneCartItem (String cartItemId);
-    double getTotalAmount ();
+    CartItem addBookToCartItem(Long bookId);
 
+    void removeOneCartItem(Long cartItemId, Long cartSummaryId);
 
+    void addOneCartItem(Long cartItemId);
 
-
+    double getTotalAmount();
 
 }
+

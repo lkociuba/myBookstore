@@ -1,8 +1,8 @@
 package com.example.myBookstore.repository;
 
 import com.example.myBookstore.dao.UserRepository;
-import com.example.myBookstore.model.Role;
-import com.example.myBookstore.model.User;
+import com.example.myBookstore.entity.Role;
+import com.example.myBookstore.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -31,8 +31,8 @@ class UserRepositoryTest {
     private User userInit;
 
     @BeforeEach
-    void init(){
-        userInit=new User();
+    void init() {
+        userInit = new User();
         userInit.setFirstName("Tola");
         userInit.setLastName("Nokka");
         userInit.setEmail("tola@email.com");

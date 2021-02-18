@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ErrorController {
 
     @ExceptionHandler(RuntimeException.class)
-    public ModelAndView handleException(HttpServletRequest request, Exception exception){
+    public ModelAndView handleException(HttpServletRequest request, Exception exception) {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("exception", exception.getStackTrace());

@@ -19,47 +19,48 @@ public class ShoppingCartController {
     @Autowired
     private CartSummaryService cartSummaryService;
 
-
-    //bookId - dodanie produktu do koszyka będzie miało zrobienie adresu URL wyświetlający to
     @GetMapping("/buyBook/{bookId}")
-    public String addBookToShoppingCart (@PathVariable(value = "bookId") String bookId,
-                                         ModelMap model){
+    public String addBookToShoppingCart(@PathVariable(value = "bookId") Long bookId,
+                                        ModelMap model) {
+        cartItemService.addBookToCartItem(bookId);
+        return "redirect:/shoppingCart";
+    }
+
+    @GetMapping("/page/buyBook/{bookId}")
+    public String addBookToShoppingCartFromPaginatedPage(@PathVariable(value = "bookId") Long bookId,
+                                                         ModelMap model) {
         cartItemService.addBookToCartItem(bookId);
         return "redirect:/shoppingCart";
     }
 
     @GetMapping("/deleteCartItem/{cartSummaryId}")
-    public String deleteCartItemFromShoppingCart (@PathVariable(value = "cartSummaryId") String   cartSummaryId,
-                                                  @RequestParam("cartItemId") String cartItemId,
-                                                  ModelMap model){
+    public String deleteCartItemFromShoppingCart(@PathVariable(value = "cartSummaryId") Long cartSummaryId,
+                                                 @RequestParam("cartItemId") Long cartItemId,
+                                                 ModelMap model) {
         cartSummaryService.deleteCartItemById(cartSummaryId, cartItemId);
         return "redirect:/shoppingCart";
     }
 
     @GetMapping("/removeOneCartItem/{cartItemId}")
-    public String removeOneCartItemFromShoppingCart (@PathVariable(value = "cartItemId") String cartItemId,
-                                                     @RequestParam("cartSummaryId")String cartSumaryId,
-                                                     ModelMap model){
+    public String removeOneCartItemFromShoppingCart(@PathVariable(value = "cartItemId") Long cartItemId,
+                                                    @RequestParam("cartSummaryId") Long cartSumaryId,
+                                                    ModelMap model) {
         cartItemService.removeOneCartItem(cartItemId, cartSumaryId);
         return "redirect:/shoppingCart";
     }
 
     @GetMapping("/addOneCartItem/{cartItemId}")
-    public String addOneCartItemToShoppingCart (@PathVariable(value = "cartItemId") String cartItemId,
-                                                     ModelMap model){
+    public String addOneCartItemToShoppingCart(@PathVariable(value = "cartItemId") Long cartItemId,
+                                               ModelMap model) {
         cartItemService.addOneCartItem(cartItemId);
         return "redirect:/shoppingCart";
     }
 
-
     @GetMapping("/shoppingCart")
-    public String showShoppingCart(ModelMap model){
+    public String showShoppingCart(ModelMap model) {
         model.addAttribute("cartItem", cartItemService.findAllCartItems());
         model.addAttribute("cartSummary", cartSummaryService.findAllCartSummary());
         model.addAttribute("totalAmount", cartItemService.getTotalAmount());
         return "shoppingCart";
     }
-
-
-
 }

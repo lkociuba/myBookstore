@@ -7,20 +7,19 @@
 
 <header th:fragment="menu">
     <div class="container">
-        <!--logo w navigation bar-->
         <img src="../static/images/navbarLogo.png" alt="logo" class="logo" width="200"
-             th:src="@{images/navbarLogo.png}" >
+             th:src="@{images/navbarLogo.png}">
 
         <nav>
             <ul>
-                <li><a href="/">Home</a> </li>
-                <li><a href="/bookList">Book list</a> </li>
-                <li><a href="/shoppingCart">Shopping Cart</a> </li>
-                <li><a sec:authorize="hasRole('EMPLOYEE')" href="/bookAdd">Add new book</a> </li>
-                <li><a href="/paginatedBookList">Paginated Book List</a> </li>
-                <li><a href="/login">Login</a> </li>       <!-- Lista jest teraz najbardziej używana -->
-                <li><a href="/registration">Registration</a> </li>
-                <li><a href="/logout">Logout</a> </li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/shoppingCart">Shopping Cart</a></li>
+                <li><a href="/paginatedBookList">Paginated Book List</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/registration">Registration</a></li>
+                <li><a href="/logout">Logout</a></li>
+                <li><a sec:authorize="hasRole('EMPLOYEE')" href="/bookList">Book list</a></li>
+                <li><a sec:authorize="hasRole('EMPLOYEE')" href="/bookAdd">Add new book</a></li>
             </ul>
         </nav>
     </div>

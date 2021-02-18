@@ -14,13 +14,9 @@ public class Book {
     private Long bookId;
 
     private String name;
-
     private String description;
-
     private double price;
 
-
-    //One Way relacja - bo nie potrzebuje zarządać CartItem z Book
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "book")
     private CartItem cartItem;
 
@@ -31,7 +27,8 @@ public class Book {
     @CreationTimestamp
     private LocalDateTime createdTime;
 
-    public Book(){}
+    public Book() {
+    }
 
 
     public Book(String name, String description, double price) {
@@ -40,8 +37,6 @@ public class Book {
         this.description = description;
         this.price = price;
     }
-
-
 
     public Long getBookId() {
         return bookId;
@@ -79,15 +74,4 @@ public class Book {
         this.createdTime = createdTime;
     }
 
-
-    @Override
-    public String toString() {
-        return "Book{" +
-                "bookId=" + bookId +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", createdTime=" + createdTime +
-                '}';
-    }
 }

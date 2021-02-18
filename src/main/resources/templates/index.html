@@ -3,39 +3,44 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 
-   <div th:replace="fragments/header :: header"></div>
+    <div th:replace="fragments/header :: header"></div>
 
 </head>
 <body>
 
-    <div th:replace="fragments/menu :: menu"></div>
+<div th:replace="fragments/menu :: menu"></div>
 
-    <!-- Body stornki -->
-    <div class="container">
-        <div class="jumbotron">
-            <h1>Welcome to my Bookstore !</h1>
+<div class="container">
+    <div class="jumbotron">
+        <h1>Welcome to my Bookstore !</h1>
 
-            <img src="../static/images/welcomePage.png" width="1000"
-                 th:src="@{images/welcomePage.png}"/>
-            <br>
+        <img src="../static/images/welcomePage.png" width="1000"
+             th:src="@{images/welcomePage.png}"/>
+        <br>
 
-            <h3>User - Username: user@email, Password: user</h3>
-            <h3>Employee - Username: employee@email, Password: employee</h3>
-            <h3>Manager - Username: manager@email, Password: manager</h3>
-            <br>
+        <h3>User - Username: user@email, Password: user</h3>
+        <h3>Employee - Username: employee@email, Password: employee</h3>
+        <h3>Manager - Username: manager@email, Password: manager</h3>
+        <br>
 
-            <h1><div sec:authorize="hasRole('USER')">You have User permissions</div></h1>
-            <h1><div sec:authorize="hasRole('EMPLOYEE')">You have Employee permissions</div></h1>
-            <h1><div sec:authorize="hasRole('MANAGER')">You have Manager permissions</div></h1>
-            <br>
+        <h1>
+            <div sec:authorize="hasRole('USER')">You have User permissions</div>
+        </h1>
+        <h1>
+            <div sec:authorize="hasRole('EMPLOYEE')">You have Employee permissions</div>
+        </h1>
+        <h1>
+            <div sec:authorize="hasRole('MANAGER')">You have Manager permissions</div>
+        </h1>
+        <br>
 
-            <h2>Choose the most beautiful story.</h2>
-
-        </div>
+        <h2>Choose the most beautiful story.</h2>
 
     </div>
 
-    <div th:replace="fragments/footer :: footer"></div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
 
 
 </body>

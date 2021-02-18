@@ -1,7 +1,7 @@
 package com.example.myBookstore.service;
 
-import com.example.myBookstore.model.Role;
-import com.example.myBookstore.model.User;
+import com.example.myBookstore.entity.Role;
+import com.example.myBookstore.entity.User;
 import com.example.myBookstore.dao.UserRepository;
 import com.example.myBookstore.web.dto.UserRegistrationDto;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,38 +38,14 @@ class UserServiceImplTest {
     private UserRegistrationDto userRegDTO;
 
     @BeforeEach
-    void init(){
+    void init() {
         userInit = new User();
         userInit.setFirstName("Tola");
         userInit.setLastName("Nokka");
         userInit.setEmail(USER_EMAIL);
         userInit.setPassword("$2y$12$208Rt4ViYxpzhbcqyplmb.9VaVKd0OywYOq74iz0ZH1i2C3Zz3yY.");
         userInit.setRoles(new HashSet<Role>(Arrays.asList(new Role("ROLE_USER"))));
-
-        /*
-        userRegDTO = new UserRegistrationDto();
-        userRegDTO.setFirstName("Tola");
-        userRegDTO.setLastName("Nokka");
-        userRegDTO.setEmail(USER_EMAIL);
-        userRegDTO.setPassword("$2y$12$208Rt4ViYxpzhbcqyplmb.9VaVKd0OywYOq74iz0ZH1i2C3Zz3yY.");
-         */
     }
-
-    /*
-    @Test
-    void save() {
-        //when(userRepoMock.save(Mockito.any(User.class))).thenReturn(userInit);
-
-        User savedUser = userService.save(userRegDTO);
-
-        assertThat(savedUser.getEmail(), notNullValue());
-
-        //Mockito.verify(userRepoMock, Mockito.times(1)).save(Mockito.any(User.class));
-    }
-
-
-     */
-
 
     @Test
     void loadUserByUsernameAndUserExists() {
@@ -86,7 +62,7 @@ class UserServiceImplTest {
 
         assertThrows(UsernameNotFoundException.class, () -> {
             userService.loadUserByUsername(USER_EMAIL);
-                });
+        });
 
     }
 

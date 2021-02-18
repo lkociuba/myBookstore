@@ -8,7 +8,6 @@ h1 {
     text-align: center;
 }
 
-
 h2 {
     color: #111;
     font-family: 'Open Sans', sans-serif;
@@ -18,7 +17,6 @@ h2 {
     margin: 0 0 72px;
     text-align: left;
 }
-
 
 p {
     color: #685206;
@@ -30,66 +28,52 @@ p {
     text-justify: inter-word;
 }
 
-
-
-/*W Header znajduje się navigation bar */
 body {
     margin: 0;
-    background: radial-gradient(circle, whitesmoke,darkgrey);
+    background: radial-gradient(circle, whitesmoke, darkgrey);
 }
 
-/*Ogólnie dodaje do contenera all - SPRAWDZIĆ!!! - to co jest w container - np body robie w tym*/
 .container {
     width: 60%;
     margin: 0 auto;
 }
 
-/*W Header znajduje się navigation bar */
 header {
     background-color: darkgrey;
 }
 
-/*Określenie logo, któe wrzucam do Navigation bar po lewej */
 .logo {
     float: left;
-    padding: 15px 0; /*margines od loga do dołu navigation bar */
+    padding: 15px 0;
 }
 
-/*Określenie gdzie ma sie znalezc lista nawigacyjna */
 nav {
     float: right;
 }
 
-/*Unordered list w Navigation */
-/*Margin - margines od góry*/
-nav ul{
+nav ul {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-/*Configuracja List Items */ /*Lepsze niż float left,  bo daje małe odstępy pomiędzy nimi */
-/*Display - Lepsze niż float left,  bo daje małe odstępy pomiędzy nimi */
-/*Margin - LOdległości pomiędzy Home Login i reszr=tą i umiejscowienie pierwszego*/
-nav li{
+nav li {
     display: inline-block;
     margin-left: 70px;
     padding-top: 15px;
     padding-bottom: 15px;
 }
 
-/*Odnosi się do tesktu navigacyjnych  */
 nav a {
     color: darkblue;
     text-decoration: aqua;
-    text-transform:  uppercase;
+    text-transform: uppercase;
 }
 
-nav a:hover{
+nav a:hover {
     color: white;
 }
 
-/* Przyklejony footer do dołu stronki */
 .footer {
     position: absolute;
     right: 0;
@@ -100,7 +84,6 @@ nav a:hover{
     text-align: center;
 }
 
-/* Formatowanie tabeli */
 table, th, td {
     border: 1px solid black;
 }

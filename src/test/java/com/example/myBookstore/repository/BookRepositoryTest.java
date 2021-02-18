@@ -1,7 +1,7 @@
-/*
 package com.example.myBookstore.repository;
 
 import com.example.myBookstore.MyBookstoreApplication;
+import com.example.myBookstore.dao.BookRepository;
 import com.example.myBookstore.entity.Book;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -36,7 +35,7 @@ class BookRepositoryTest {
     private Book bookInint;
 
     @BeforeEach
-    void init(){
+    void init() {
         bookInint = new Book();
         bookInint.setName("Reed book");
         bookInint.setDescription("Red book about reed things");
@@ -44,31 +43,12 @@ class BookRepositoryTest {
     }
 
     @Test
-    void shouldFindBookById(){
+    void shouldFindBookById() {
         entityManager.persist(bookInint);
         entityManager.flush();
 
-        Book result = bookRepository.findBookById(1L);
+        Book result = bookRepository.findByBookId(1L);
 
         assertThat(result.getBookId(), is(bookInint.getBookId()));
     }
-
-    @Test
-    void shouldFindBookByName(){
-        entityManager.persist(bookInint);
-        entityManager.flush();
-
-        Book result = bookRepository.findBookByName("Reed book");
-
-        assertThat(result.getName(), is(bookInint.getName()));
-    }
-
-    @Test
-    void shouldRetrieveAllBook() {
-        List<Book> books = bookRepository.retrieveAllBooks();
-
-        logger.info("All books -> {}", books);
-    }
 }
-
- */
