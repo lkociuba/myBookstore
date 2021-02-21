@@ -5,8 +5,10 @@ Implemented functions:
 
 For Customers:
 1. The can register an account. Log in and log out.
-3. They can scan the books and sorted by name and price.
-4. They can add books into the cart.
+2. They can scan the books and sorted by name and price.
+3. They can add books into the cart.
+4. They can add Customer Informations to the Cart Summary.
+5. They can chceck Cart Summary
 
 
 For Salesperson:
