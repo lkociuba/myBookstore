@@ -15,9 +15,9 @@ public class CustomerInfoAddDto {
 
     @NotEmpty(message = "Email is required")
     @Email(message = "Email is invalid")
-    private String customerEmail;
+        private String customerEmail;
 
-    @Pattern(regexp = "(^$|[0-9]{10})")
+    @Pattern(regexp = "(^$|[0-9]{9})", message = "Phone number 9 digits (0-9)")
     @NotNull
     private String customerPhone;
 

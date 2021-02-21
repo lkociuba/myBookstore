@@ -33,10 +33,6 @@ public class CartSummary {
         return cartSummaryId;
     }
 
-    public void setCartSummaryId(Long cartSummaryId) {
-        this.cartSummaryId = cartSummaryId;
-    }
-
     public List<CartItem> getCartItems() {
         return cartItems;
     }

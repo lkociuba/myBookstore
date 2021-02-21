@@ -2,7 +2,9 @@ package com.example.myBookstore.dao;
 
 import com.example.myBookstore.MyBookstoreApplication;
 import com.example.myBookstore.entity.CartSummary;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -13,7 +15,9 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -35,15 +39,22 @@ class CartSummaryRepositoryTest {
     }
 
     @Test
+    @DisplayName("Should findByCartSummaryId Success")
     void findByCartSummaryId() {
         entityManager.persist(summaryInit);
         entityManager.flush();
 
         CartSummary result = cartSummaryRepository.findByCartSummaryId(1L);
-        logger.info("First course Retrieved {} ", result.getCartSummaryId());
 
         assertThat(result.getCartSummaryId(), is(summaryInit.getCartSummaryId()));
+    }
 
+    @Test
+    @DisplayName("Should findByCartSummaryId Not Found")
+    void findByCartSummaryIdNotFound() {
+        CartSummary result = cartSummaryRepository.findByCartSummaryId(1L);
+
+        assertThat(result, nullValue());
     }
 }
 

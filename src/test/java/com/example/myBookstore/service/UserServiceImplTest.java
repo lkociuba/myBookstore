@@ -54,6 +54,7 @@ class UserServiceImplTest {
         UserDetails loadedUser = userService.loadUserByUsername(USER_EMAIL);
 
         assertThat(loadedUser, notNullValue());
+
     }
 
     @Test

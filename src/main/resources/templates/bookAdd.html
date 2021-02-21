@@ -24,6 +24,7 @@
             <h2>Add new book</h2>
 
             <form th:action="@{/bookAdd}" method="post" th:object="${book}">
+
                 <div class="form-group">
                     <label class="control-label" for="name"> Book name </label>
                     <input id="name" placeholder="Lenght between 1 and 50" class="form-control" th:field="*{name}"

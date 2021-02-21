@@ -18,14 +18,10 @@
              th:src="@{images/welcomePage.png}"/>
         <br>
 
-        <h3>User - Username: user@email, Password: user</h3>
         <h3>Employee - Username: employee@email, Password: employee</h3>
         <h3>Manager - Username: manager@email, Password: manager</h3>
         <br>
 
-        <h1>
-            <div sec:authorize="hasRole('USER')">You have User permissions</div>
-        </h1>
         <h1>
             <div sec:authorize="hasRole('EMPLOYEE')">You have Employee permissions</div>
         </h1>
@@ -41,7 +37,6 @@
 </div>
 
 <div th:replace="fragments/footer :: footer"></div>
-
 
 </body>
 </html>

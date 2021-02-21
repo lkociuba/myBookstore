@@ -9,6 +9,8 @@ import java.util.List;
 public interface CartItemService {
     List<CartItem> findAllCartItems();
 
+    void deleteCartItem(CartItem cartItem);
+
     CartItem findByCartItemId(Long cartItemId);
 
     CartItem createCartItemWithBook(Book book);

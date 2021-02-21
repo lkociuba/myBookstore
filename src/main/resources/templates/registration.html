@@ -23,6 +23,7 @@
             <h2>Registration</h2>
 
             <form th:action="@{/registration}" method="post" th:object="${user}">
+
                 <div class="form-group">
                     <label class="control-label" for="name"> First Name </label>
                     <input id="name" placeholder="Lenght between 2 and 50" class="form-control" th:field="*{firstName}"

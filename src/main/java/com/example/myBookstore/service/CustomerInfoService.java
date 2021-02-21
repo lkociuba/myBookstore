@@ -1,9 +1,12 @@
 package com.example.myBookstore.service;
 
-import com.example.myBookstore.entity.CartSummary;
 import com.example.myBookstore.entity.CustomerInfo;
 import com.example.myBookstore.web.dto.CustomerInfoAddDto;
 
+import java.util.List;
+
 public interface CustomerInfoService {
-    CustomerInfo saveCustomerInfo(CustomerInfoAddDto savingDto, CartSummary cartSummary);
+    CustomerInfo saveCustomerInfoToCartSummary(CustomerInfoAddDto savingDto);
+
+    List<CustomerInfo> findAllCustomerInfos();
 }

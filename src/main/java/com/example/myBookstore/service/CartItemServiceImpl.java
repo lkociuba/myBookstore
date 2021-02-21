@@ -29,6 +29,11 @@ public class CartItemServiceImpl implements CartItemService {
     }
 
     @Override
+    public void deleteCartItem(CartItem cartItem) {
+        cartItemRepository.delete(cartItem);
+    }
+
+    @Override
     public CartItem findByCartItemId(Long cartItemId) {
         return cartItemRepository.findByCartItemId(cartItemId);
     }

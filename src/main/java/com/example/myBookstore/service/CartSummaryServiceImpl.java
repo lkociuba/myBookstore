@@ -16,9 +16,6 @@ public class CartSummaryServiceImpl implements CartSummaryService {
     private CartSummaryRepository cartSummaryRepository;
 
     @Autowired
-    private CartItemRepository cartItemRepository;
-
-    @Autowired
     private CartItemService cartItemService;
 
     @Override
@@ -41,8 +38,9 @@ public class CartSummaryServiceImpl implements CartSummaryService {
 
             cartSummary = cartSummaryRepository.findByCartSummaryId(cartSumaryId);
             cartSummary.deleteCartItem(cartItem);
-            cartItemRepository.delete(cartItem);
+            cartItemService.deleteCartItem(cartItem);
         }
+
         cartSummaryRepository.save(cartSummary);
     }
 }

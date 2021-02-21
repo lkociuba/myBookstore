@@ -48,6 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                // "/img/**",
                 //"/images/**",
                 "/**").permitAll()
+                //.antMatchers("/bookList", "/bookAdd").access("hasRole('EMPLOYEE')")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()

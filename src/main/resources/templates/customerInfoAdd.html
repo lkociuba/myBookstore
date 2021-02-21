@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+
+    <div th:replace="fragments/header :: header"></div>
+
+</head>
+<body>
+
+<div th:replace="fragments/menu :: menu"></div>
+
+<br>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+
+            <div th:if="${param.success}">
+                <div class="alert alert-success">You've successfully add CustomerInfo to you CartSummary</div>
+            </div>
+
+            <h2>Add Customer info to Cart summary</h2>
+            <h3>You can create only 1 CustomerInfo. Next attempt will transfer you to CartSummary side.</h3>
+
+            <form th:action="@{/customerInfoAdd}" method="post" th:object="${customerInfo}">
+
+                <div class="form-group">
+                    <label class="control-label" for="customerName"> Customer Name </label>
+                    <input id="customerName" placeholder="Lenght between 1 and 50" class="form-control"
+                           th:field="*{customerName}"
+                           required autofocus="autofocus"/>
+                    <p th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"
+                       class="alert alert-danger"></p>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="customerAddress"> Customer address </label>
+                    <input id="customerAddress" placeholder="Lenght between 5 and 50" class="form-control"
+                           th:field="*{customerAddress}" required autofocus="autofocus"/>
+                    <p th:if="${#fields.hasErrors('customerAddress')}" th:errors="*{customerAddress}"
+                       class="alert alert-danger"></p>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="customerEmail"> Customer email </label>
+                    <input id="customerEmail" placeholder="email@email" class="form-control" th:field="*{customerEmail}"
+                           required autofocus="autofocus"/>
+                    <p th:if="${#fields.hasErrors('customerEmail')}" th:errors="*{customerEmail}"
+                       class="alert alert-danger"></p>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="customerPhone"> Customer phone </label>
+                    <input id="customerPhone" placeholder="9 nubmers from 0 to 9" class="form-control"
+                           th:field="*{customerPhone}" required autofocus="autofocus"/>
+                    <p th:if="${#fields.hasErrors('customerPhone')}" th:errors="*{customerPhone}"
+                       class="alert alert-danger"></p>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success" href="bookList">Save CustomerInfo to CartSummary</button>
+                    <span>Go to <a href="/" th:href="@{/cartSummary}">Cart Sumary</a></span>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
