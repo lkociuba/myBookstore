@@ -69,12 +69,11 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- poziomy dostępu w View -->
+		<!-- Thymeleaf role access levels -->
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
 		</dependency>
-
 
 		<!--WebJars-->
 		<dependency>
@@ -93,13 +92,13 @@
 			<scope>test</scope>
 		</dependency>
 
-        <!-- Wymagana zależność dla @Size - Validator pola w Entity (warto doszytać z zakłądki InneZakładki-->
+        <!-- Validation-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
-        <!-- Formatownie daty w Thymeleaf-->
+        <!-- Thymeleaf - date formatting -->
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-java8time</artifactId>
