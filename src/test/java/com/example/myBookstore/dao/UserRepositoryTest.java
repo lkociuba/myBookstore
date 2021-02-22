@@ -1,9 +1,9 @@
-package com.example.myBookstore.repository;
+package com.example.myBookstore.dao;
 
-import com.example.myBookstore.dao.UserRepository;
 import com.example.myBookstore.entity.Role;
 import com.example.myBookstore.entity.User;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 
@@ -41,6 +42,7 @@ class UserRepositoryTest {
     }
 
     @Test
+    @DisplayName("Should findByEmail Success")
     void findByEmail() {
         entityManager.persist(userInit);
         entityManager.flush();
@@ -48,5 +50,13 @@ class UserRepositoryTest {
         User result = userRepository.findByEmail("tola@email.com");
 
         assertThat(result.getEmail(), is(userInit.getEmail()));
+    }
+
+    @Test
+    @DisplayName("Should findByEmail Not Found")
+    void findByEmailNotFound() {
+        User result = userRepository.findByEmail("tola@email.com");
+
+        assertThat(result, nullValue());
     }
 }

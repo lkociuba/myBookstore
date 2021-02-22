@@ -1,30 +1,24 @@
-package com.example.myBookstore.repository;
+package com.example.myBookstore.dao;
 
-import com.example.myBookstore.MyBookstoreApplication;
-import com.example.myBookstore.dao.BookRepository;
 import com.example.myBookstore.entity.Book;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@ComponentScan("com.example.myBookstore.repository")
 class BookRepositoryTest {
-
-    private Logger logger = LoggerFactory.getLogger(MyBookstoreApplication.class);
 
     @Autowired
     private TestEntityManager entityManager;
@@ -43,12 +37,21 @@ class BookRepositoryTest {
     }
 
     @Test
-    void shouldFindBookById() {
+    @DisplayName("Should findByBookId Success")
+    void findByBookId() {
         entityManager.persist(bookInint);
         entityManager.flush();
 
         Book result = bookRepository.findByBookId(1L);
 
         assertThat(result.getBookId(), is(bookInint.getBookId()));
+    }
+
+    @Test
+    @DisplayName("Should findByBookId Not Found")
+    void findByBookIdNotFound() {
+        Book result = bookRepository.findByBookId(1L);
+
+        assertThat(result, nullValue());
     }
 }
