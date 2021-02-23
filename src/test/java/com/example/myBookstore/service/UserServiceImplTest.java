@@ -55,7 +55,7 @@ class UserServiceImplTest {
     }
 
     @Test
-    @DisplayName("Should loadUserByUsername - User Exist")
+    @DisplayName("Should loadUserByUsername - Success")
     void loadUserByUsername() {
         given(userRepoMock.findByEmail(Mockito.anyString())).willReturn(userInit);
 
@@ -66,7 +66,7 @@ class UserServiceImplTest {
     }
 
     @Test
-    @DisplayName("SHould loadUserByUsername - User is Null")
+    @DisplayName("Should loadUserByUsername - Nor found")
     void loadUserByUsernameNotFound() {
         given(userRepoMock.findByEmail(Mockito.anyString())).willReturn(null);
 

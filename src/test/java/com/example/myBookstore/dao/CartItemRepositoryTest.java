@@ -27,7 +27,7 @@ class CartItemRepositoryTest {
     private CartItem cartItemInit = new CartItem();
 
     @Test
-    @DisplayName("Should findByCartItemId Success")
+    @DisplayName("Should findByCartItemId - Success")
     void findByCartItemId() {
         entityManager.persist(cartItemInit);
         entityManager.flush();
@@ -38,7 +38,7 @@ class CartItemRepositoryTest {
     }
 
     @Test
-    @DisplayName("Should findByCartItemId Not Found")
+    @DisplayName("Should findByCartItemId - Not found")
     void findByCartItemIdNotFound() {
         CartItem result = cartItemRepository.findByCartItemId(1L);
 

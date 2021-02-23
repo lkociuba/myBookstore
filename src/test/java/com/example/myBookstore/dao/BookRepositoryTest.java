@@ -48,7 +48,7 @@ class BookRepositoryTest {
     }
 
     @Test
-    @DisplayName("Should findByBookId Not Found")
+    @DisplayName("Should findByBookId - Not found")
     void findByBookIdNotFound() {
         Book result = bookRepository.findByBookId(1L);
 

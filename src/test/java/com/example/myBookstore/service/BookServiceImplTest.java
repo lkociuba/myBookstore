@@ -2,7 +2,7 @@ package com.example.myBookstore.service;
 
 import com.example.myBookstore.dao.BookRepository;
 import com.example.myBookstore.entity.Book;
-import org.junit.Assert;
+import com.example.myBookstore.web.dto.BookAddDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,8 +18,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.anyObject;
 import static org.mockito.BDDMockito.given;
 
 
@@ -60,16 +59,16 @@ class BookServiceImplTest {
 
         List<Book> result = bookService.findAllBooks();
 
-        assertTrue(result.size() == 2);
+        assertThat(result.size(), is(2));
         assertThat(result, equalTo(bookList));
     }
 
     @Test
-    @DisplayName("Should findAllBooks - bookList is Empty")
+    @DisplayName("Should findAllBooks - List is empty")
     void findAllBooksIsEmpty() {
         List<Book> result = bookService.findAllBooks();
 
-        assertTrue(result.size() == 0);
+        assertThat(result.size(), is(0));
     }
 
     @Test
@@ -77,7 +76,13 @@ class BookServiceImplTest {
     }
 
     @Test
+    @DisplayName("Should saveBook - Not null value")
     void saveBook() {
+        given(bookRepoMock.save(anyObject())).willReturn(new Book());
+
+        BookAddDto bookAddDto = new BookAddDto();
+
+        assertThat(bookService.saveBook(bookAddDto), is(notNullValue()));
     }
 
     @Test
@@ -91,7 +96,7 @@ class BookServiceImplTest {
     }
 
     @Test
-    @DisplayName("Should findBookById - Not Found")
+    @DisplayName("Should findBookById - Not found")
     void findBookByIdNotFound() {
         Book result = bookService.findBookById(1L);
 

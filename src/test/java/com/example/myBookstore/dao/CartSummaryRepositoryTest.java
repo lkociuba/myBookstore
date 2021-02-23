@@ -39,7 +39,7 @@ class CartSummaryRepositoryTest {
     }
 
     @Test
-    @DisplayName("Should findByCartSummaryId Success")
+    @DisplayName("Should findByCartSummaryId - Success")
     void findByCartSummaryId() {
         entityManager.persist(summaryInit);
         entityManager.flush();
@@ -50,7 +50,7 @@ class CartSummaryRepositoryTest {
     }
 
     @Test
-    @DisplayName("Should findByCartSummaryId Not Found")
+    @DisplayName("Should findByCartSummaryId - Not found")
     void findByCartSummaryIdNotFound() {
         CartSummary result = cartSummaryRepository.findByCartSummaryId(1L);
 

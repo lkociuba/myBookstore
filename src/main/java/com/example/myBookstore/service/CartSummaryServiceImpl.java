@@ -29,18 +29,19 @@ public class CartSummaryServiceImpl implements CartSummaryService {
     }
 
     @Override
-    public void deleteCartItemById(Long cartSumaryId, Long cartItemId) {
+    public void deleteCartItemById(Long cartSummaryId, Long cartItemId) {
         CartItem cartItem = null;
         CartSummary cartSummary = null;
 
-        if (cartItemId != null && cartSumaryId != null) {
+        if (cartItemId != null && cartSummaryId != null) {
             cartItem = cartItemService.findByCartItemId(cartItemId);
 
-            cartSummary = cartSummaryRepository.findByCartSummaryId(cartSumaryId);
+            cartSummary = cartSummaryRepository.findByCartSummaryId(cartSummaryId);
             cartSummary.deleteCartItem(cartItem);
-            cartItemService.deleteCartItem(cartItem);
-        }
 
-        cartSummaryRepository.save(cartSummary);
+            cartItemService.deleteCartItem(cartItem);
+
+            cartSummaryRepository.save(cartSummary);
+        }
     }
 }

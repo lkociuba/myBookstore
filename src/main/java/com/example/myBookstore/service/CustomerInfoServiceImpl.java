@@ -25,7 +25,7 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
 
         CartSummary cartSummary = null;
         List<CartSummary> cartSummaryList = cartSummaryService.findAllCartSummary();
-        for (CartSummary summary : cartSummaryList){
+        for (CartSummary summary : cartSummaryList) {
             cartSummary = summary;
         }
 
@@ -38,23 +38,3 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
         return customerInfoRepository.findAll();
     }
 }
-
-
-/*
- @Autowired
-    private CustomerInfoRepository customerInfoRepository;
-
-    @Override
-    public CustomerInfo saveCustomerInfoToCartSummary(CustomerInfoAddDto savingDto) {
-        CustomerInfo customerInfo = new CustomerInfo(savingDto.getCustomerName(), savingDto.getCustomerAddress(),
-                savingDto.getCustomerEmail(), savingDto.getCustomerPhone());
-
-
-        return customerInfoRepository.save(customerInfo);
-    }
-
-    @Override
-    public List<CustomerInfo> findAllCustomerInfos() {
-        return customerInfoRepository.findAll();
-    }
- */

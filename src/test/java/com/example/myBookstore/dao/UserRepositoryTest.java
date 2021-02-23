@@ -42,7 +42,7 @@ class UserRepositoryTest {
     }
 
     @Test
-    @DisplayName("Should findByEmail Success")
+    @DisplayName("Should findByEmail - Success")
     void findByEmail() {
         entityManager.persist(userInit);
         entityManager.flush();
@@ -53,7 +53,7 @@ class UserRepositoryTest {
     }
 
     @Test
-    @DisplayName("Should findByEmail Not Found")
+    @DisplayName("Should findByEmail - Not found")
     void findByEmailNotFound() {
         User result = userRepository.findByEmail("tola@email.com");
 

@@ -9,5 +9,5 @@ public interface CartSummaryService {
 
     CartSummary findCartSummaryById(Long cartSummaryId);
 
-    void deleteCartItemById(Long cartSumaryId, Long cartItemId);
+    void deleteCartItemById(Long cartSummaryId, Long cartItemId);
 }
