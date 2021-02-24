@@ -29,27 +29,27 @@ class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
-    private User userInit;
+    private User userInit1;
 
     @BeforeEach
     void init() {
-        userInit = new User();
-        userInit.setFirstName("Tola");
-        userInit.setLastName("Nokka");
-        userInit.setEmail("tola@email.com");
-        userInit.setPassword("$2y$12$208Rt4ViYxpzhbcqyplmb.9VaVKd0OywYOq74iz0ZH1i2C3Zz3yY.");
-        userInit.setRoles(new HashSet<Role>(Arrays.asList(new Role("ROLE_USER"))));
+        userInit1 = new User();
+        userInit1.setFirstName("Tola");
+        userInit1.setLastName("Nokka");
+        userInit1.setEmail("tola@email.com");
+        userInit1.setPassword("$2y$12$208Rt4ViYxpzhbcqyplmb.9VaVKd0OywYOq74iz0ZH1i2C3Zz3yY.");
+        userInit1.setRoles(new HashSet<Role>(Arrays.asList(new Role("ROLE_USER"))));
     }
 
     @Test
     @DisplayName("Should findByEmail - Success")
     void findByEmail() {
-        entityManager.persist(userInit);
+        entityManager.persist(userInit1);
         entityManager.flush();
 
         User result = userRepository.findByEmail("tola@email.com");
 
-        assertThat(result.getEmail(), is(userInit.getEmail()));
+        assertThat(result.getEmail(), is(userInit1.getEmail()));
     }
 
     @Test

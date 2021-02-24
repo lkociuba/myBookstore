@@ -35,29 +35,29 @@ class UserServiceImplTest {
     @InjectMocks
     private UserServiceImpl userService;
 
-    private User userInit;
-    private UserRegistrationDto userRegDTO;
+    private User userInit1;
+    private UserRegistrationDto userRegDTO1;
 
     @BeforeEach
     void init() {
-        userInit = new User();
-        userInit.setFirstName("Tola");
-        userInit.setLastName("Nokka");
-        userInit.setEmail(USER_EMAIL);
-        userInit.setPassword("$2y$12$208Rt4ViYxpzhbcqyplmb.9VaVKd0OywYOq74iz0ZH1i2C3Zz3yY.");
-        userInit.setRoles(new HashSet<Role>(Arrays.asList(new Role("ROLE_USER"))));
+        userInit1 = new User();
+        userInit1.setFirstName("Tola");
+        userInit1.setLastName("Nokka");
+        userInit1.setEmail(USER_EMAIL);
+        userInit1.setPassword("$2y$12$208Rt4ViYxpzhbcqyplmb.9VaVKd0OywYOq74iz0ZH1i2C3Zz3yY.");
+        userInit1.setRoles(new HashSet<Role>(Arrays.asList(new Role("ROLE_USER"))));
 
-        userRegDTO = new UserRegistrationDto();
-        userRegDTO.setFirstName("Tola");
-        userRegDTO.setLastName("Nokka");
-        userRegDTO.setEmail(USER_EMAIL);
-        userRegDTO.setPassword("$2y$12$208Rt4ViYxpzhbcqyplmb.9VaVKd0OywYOq74iz0ZH1i2C3Zz3yY.");
+        userRegDTO1 = new UserRegistrationDto();
+        userRegDTO1.setFirstName("Tola");
+        userRegDTO1.setLastName("Nokka");
+        userRegDTO1.setEmail(USER_EMAIL);
+        userRegDTO1.setPassword("$2y$12$208Rt4ViYxpzhbcqyplmb.9VaVKd0OywYOq74iz0ZH1i2C3Zz3yY.");
     }
 
     @Test
     @DisplayName("Should loadUserByUsername - Success")
     void loadUserByUsername() {
-        given(userRepoMock.findByEmail(Mockito.anyString())).willReturn(userInit);
+        given(userRepoMock.findByEmail(Mockito.anyString())).willReturn(userInit1);
 
         UserDetails loadedUser = userService.loadUserByUsername(USER_EMAIL);
 

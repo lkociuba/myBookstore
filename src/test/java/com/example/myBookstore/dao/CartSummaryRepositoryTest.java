@@ -2,7 +2,6 @@ package com.example.myBookstore.dao;
 
 import com.example.myBookstore.MyBookstoreApplication;
 import com.example.myBookstore.entity.CartSummary;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,22 +30,22 @@ class CartSummaryRepositoryTest {
     @Autowired
     private CartSummaryRepository cartSummaryRepository;
 
-    private CartSummary summaryInit;
+    private CartSummary summaryInit1;
 
     @BeforeEach
     void init() {
-        summaryInit = new CartSummary();
+        summaryInit1 = new CartSummary();
     }
 
     @Test
     @DisplayName("Should findByCartSummaryId - Success")
     void findByCartSummaryId() {
-        entityManager.persist(summaryInit);
+        entityManager.persist(summaryInit1);
         entityManager.flush();
 
         CartSummary result = cartSummaryRepository.findByCartSummaryId(1L);
 
-        assertThat(result.getCartSummaryId(), is(summaryInit.getCartSummaryId()));
+        assertThat(result.getCartSummaryId(), is(summaryInit1.getCartSummaryId()));
     }
 
     @Test

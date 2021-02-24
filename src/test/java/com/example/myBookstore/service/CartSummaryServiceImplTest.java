@@ -1,6 +1,8 @@
 package com.example.myBookstore.service;
 
+import com.example.myBookstore.dao.CartItemRepository;
 import com.example.myBookstore.dao.CartSummaryRepository;
+import com.example.myBookstore.entity.CartItem;
 import com.example.myBookstore.entity.CartSummary;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -26,16 +28,24 @@ class CartSummaryServiceImplTest {
     @Mock
     private CartSummaryRepository cartSummaryRepoMock;
 
+    @Mock
+    private CartItemServiceImpl cartItemServiceMock;
+
     @InjectMocks
     private CartSummaryServiceImpl cartSummaryService;
+
 
     private CartSummary cartSummary1;
     private CartSummary cartSummary2;
     private List<CartSummary> cartSummaryList;
+    private CartItem cartItem1;
 
     @BeforeEach
     void init() {
+        cartItem1 = new CartItem();
+
         cartSummary1 = new CartSummary();
+        cartSummary1.addCartItem(cartItem1);
 
         cartSummary2 = new CartSummary();
 
@@ -76,23 +86,20 @@ class CartSummaryServiceImplTest {
     @Test
     @DisplayName("Should findCartSummaryById - Not found")
     void findCartSummaryByIdNotFound() {
-        CartSummary result = cartSummaryService.findCartSummaryById(1L);
+        CartSummary result = cartSummaryService.findCartSummaryById(10L);
 
         assertThat(result, nullValue());
     }
 
     @Test
-    @DisplayName("Should deleteCartItemById - Success")
+    @DisplayName("Should deleteCartItemById - Verify CartSummaryRepository.save invocation Success")
     void deleteCartItemById() {
-        given(cartSummaryRepoMock.save(Mockito.anyObject())).willReturn(new CartSummary());
+        given(cartItemServiceMock.findByCartItemId(Mockito.anyLong())).willReturn(cartItem1);
+        given(cartSummaryRepoMock.findByCartSummaryId(Mockito.anyLong())).willReturn(cartSummary1);
 
-        Long cartSummaryId = 1L;
-        Long cartItemId = 1L;
+        cartSummaryService.deleteCartItemById(1L, 1L);
 
-        cartSummaryService.deleteCartItemById(cartSummaryId, cartItemId);
-
-        verify(cartSummaryRepoMock, times(1));
-
-        //to TO
+        verify(cartSummaryRepoMock).save(cartSummary1);
+        verify(cartSummaryRepoMock, times(1)).save(cartSummary1);
     }
 }

@@ -14,7 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -26,25 +25,25 @@ class BookRepositoryTest {
     @Autowired
     private BookRepository bookRepository;
 
-    private Book bookInint;
+    private Book bookInint1;
 
     @BeforeEach
     void init() {
-        bookInint = new Book();
-        bookInint.setName("Reed book");
-        bookInint.setDescription("Red book about reed things");
-        bookInint.setPrice(29.99);
+        bookInint1 = new Book();
+        bookInint1.setName("Reed book");
+        bookInint1.setDescription("Red book about reed things");
+        bookInint1.setPrice(29.99);
     }
 
     @Test
     @DisplayName("Should findByBookId Success")
     void findByBookId() {
-        entityManager.persist(bookInint);
+        entityManager.persist(bookInint1);
         entityManager.flush();
 
         Book result = bookRepository.findByBookId(1L);
 
-        assertThat(result.getBookId(), is(bookInint.getBookId()));
+        assertThat(result.getBookId(), is(bookInint1.getBookId()));
     }
 
     @Test

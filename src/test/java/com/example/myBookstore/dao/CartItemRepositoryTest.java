@@ -9,7 +9,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -24,17 +23,17 @@ class CartItemRepositoryTest {
     @Autowired
     private CartItemRepository cartItemRepository;
 
-    private CartItem cartItemInit = new CartItem();
+    private CartItem cartItemInit1 = new CartItem();
 
     @Test
     @DisplayName("Should findByCartItemId - Success")
     void findByCartItemId() {
-        entityManager.persist(cartItemInit);
+        entityManager.persist(cartItemInit1);
         entityManager.flush();
 
         CartItem result = cartItemRepository.findByCartItemId(1L);
 
-        assertThat(result.getCartItemId(), is(cartItemInit.getCartItemId()));
+        assertThat(result.getCartItemId(), is(cartItemInit1.getCartItemId()));
     }
 
     @Test

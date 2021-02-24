@@ -78,13 +78,11 @@ public class CartItemServiceImpl implements CartItemService {
         }
 
         return cartItemRepository.save(cartItem);
-
     }
 
     @Override
     public void removeOneCartItem(Long cartItemId, Long cartSummaryId) {
         CartItem cartItem = null;
-        CartSummary cartSummary = null;
 
         if (cartItemId != null) {
             cartItem = cartItemRepository.findByCartItemId(cartItemId);
@@ -100,6 +98,7 @@ public class CartItemServiceImpl implements CartItemService {
     @Override
     public void addOneCartItem(Long cartItemId) {
         CartItem cartItem = null;
+
         if (cartItemId != null) {
             cartItem = cartItemRepository.findByCartItemId(cartItemId);
             cartItem.setQuantity(cartItem.getQuantity() + 1);
@@ -111,9 +110,11 @@ public class CartItemServiceImpl implements CartItemService {
     public double getTotalAmount() {
         double totalAmount = 0;
         List<CartItem> cartItems = cartItemRepository.findAll();
+
         for (CartItem item : cartItems) {
             totalAmount += item.getAmount();
         }
+
         return totalAmount;
     }
 }
