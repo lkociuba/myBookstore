@@ -1,6 +1,7 @@
 package com.example.myBookstore.service;
 
 import com.example.myBookstore.dao.CartItemRepository;
+import com.example.myBookstore.entity.Book;
 import com.example.myBookstore.entity.CartItem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -27,6 +28,12 @@ class CartItemServiceImplTest {
     @Mock
     private CartItemRepository cartItemRepoMock;
 
+    @Mock
+    private CartSummaryService cartSummaryServiceMock;
+
+    @Mock
+    private BookService bookServiceMock;
+
     @InjectMocks
     private CartItemServiceImpl cartItemService;
 
@@ -40,6 +47,7 @@ class CartItemServiceImplTest {
         cartItem1.setQuantity(1);
 
         cartItem2 = new CartItem();
+        cartItem2.setQuantity(2);
 
         cartItemList = new ArrayList<>();
         cartItemList.add(cartItem1);
@@ -95,15 +103,45 @@ class CartItemServiceImplTest {
     }
 
     @Test
+    @DisplayName("Should createCartItemWithBook - Success")
     void createCartItemWithBook() {
+        Book book = new Book();
+
+        assertThat(cartItemService.createCartItemWithBook(book).getBook(), equalTo(book));
     }
 
     @Test
+    @DisplayName("Should addBookToCartItem - Increase Book quantity in CartItem")
     void addBookToCartItem() {
+        Book book = new Book();
+        cartItem1.setBook(book);
+
+        given(bookServiceMock.findBookById(Mockito.anyLong())).willReturn(book);
+        given(cartItemRepoMock.findByCartItemId(Mockito.anyLong())).willReturn(cartItem1);
+
+        //CartItem result = cartItemService.addBookToCartItem(1L);
+
+        //assertThat(result, equalTo(cartItem1));
     }
 
     @Test
+    @DisplayName("Should removeOneCartItem - Delete CartItem, because quantity decrease from 1 to 0")
     void removeOneCartItem() {
+        given(cartItemRepoMock.findByCartItemId(Mockito.anyLong())).willReturn(cartItem1);
+
+        cartItemService.removeOneCartItem(1L, 1L);
+
+        verify(cartSummaryServiceMock, times(1)).deleteCartItemById(Mockito.anyLong(), Mockito.anyLong());
+    }
+
+    @Test
+    @DisplayName("Should removeOneCartItem - Save CartItem with new quantity (CartItem quantity > 1)")
+    void removeOneCartItemSaveNewQuantity() {
+        given(cartItemRepoMock.findByCartItemId(Mockito.anyLong())).willReturn(cartItem2);
+
+        cartItemService.removeOneCartItem(1L, 1L);
+
+        verify(cartItemRepoMock, times(1)).save(cartItem2);
     }
 
     @Test
