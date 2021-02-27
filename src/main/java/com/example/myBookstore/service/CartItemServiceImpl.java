@@ -74,7 +74,6 @@ public class CartItemServiceImpl implements CartItemService {
             cartItem = this.createCartItemWithBook(book);
             cartSummary = new CartSummary();
             cartItem.setCartSummary(cartSummary);
-
         }
 
         return cartItemRepository.save(cartItem);
@@ -112,7 +111,7 @@ public class CartItemServiceImpl implements CartItemService {
         List<CartItem> cartItems = cartItemRepository.findAll();
 
         for (CartItem item : cartItems) {
-            totalAmount += item.getAmount();
+            totalAmount += item.getQuantity() * item.getBook().getPrice();
         }
 
         return totalAmount;

@@ -52,14 +52,6 @@ public class CartSummary {
     public void setCustomerInfo(CustomerInfo customerInfo) {
         this.customerInfo = customerInfo;
     }
-
-    public double getTotalAmount() {
-        double totalAmount = 0;
-        for (CartItem item : this.cartItems) {
-            totalAmount += item.getAmount();
-        }
-        return totalAmount;
-    }
 }
 
 

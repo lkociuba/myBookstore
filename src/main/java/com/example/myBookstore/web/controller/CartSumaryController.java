@@ -21,6 +21,7 @@ public class CartSumaryController {
     public String showCartSummary(ModelMap model) {
         model.addAttribute("cartSummary", cartSummaryService.findAllCartSummary());
         model.addAttribute("cartItem", cartItemService.findAllCartItems());
+        model.addAttribute("totalAmount", cartItemService.getTotalAmount());
         return "cartSummary";
     }
 }

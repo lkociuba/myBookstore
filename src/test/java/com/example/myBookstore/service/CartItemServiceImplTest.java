@@ -40,6 +40,7 @@ class CartItemServiceImplTest {
     private CartItem cartItem1;
     private CartItem cartItem2;
     private List<CartItem> cartItemList;
+    private Book book1;
 
     @BeforeEach
     void init() {
@@ -48,6 +49,11 @@ class CartItemServiceImplTest {
 
         cartItem2 = new CartItem();
         cartItem2.setQuantity(2);
+
+        book1 = new Book();
+        book1.setPrice(10);
+        book1.setName("Testet Book");
+        cartItem1.setBook(book1);
 
         cartItemList = new ArrayList<>();
         cartItemList.add(cartItem1);
@@ -113,15 +119,6 @@ class CartItemServiceImplTest {
     @Test
     @DisplayName("Should addBookToCartItem - Increase Book quantity in CartItem")
     void addBookToCartItem() {
-        Book book = new Book();
-        cartItem1.setBook(book);
-
-        given(bookServiceMock.findBookById(Mockito.anyLong())).willReturn(book);
-        given(cartItemRepoMock.findByCartItemId(Mockito.anyLong())).willReturn(cartItem1);
-
-        //CartItem result = cartItemService.addBookToCartItem(1L);
-
-        //assertThat(result, equalTo(cartItem1));
     }
 
     @Test
@@ -156,6 +153,36 @@ class CartItemServiceImplTest {
     }
 
     @Test
+    @DisplayName("Should getTotalAmount - Success")
     void getTotalAmount() {
+        Book bookGetAmount = new Book();
+        bookGetAmount.setPrice(10);
+        CartItem cartItemGetAmount = new CartItem();
+        cartItemGetAmount.setQuantity(3);
+        cartItemGetAmount.setBook(bookGetAmount);
+        List<CartItem> cartItemListGetAmount = new ArrayList<>();
+        cartItemListGetAmount.add(cartItemGetAmount);
+        given(cartItemRepoMock.findAll()).willReturn(cartItemListGetAmount);
+
+        double result = cartItemService.getTotalAmount();
+        double expected = bookGetAmount.getPrice() * cartItemGetAmount.getQuantity();
+
+        assertThat(result, is(expected));
+    }
+
+    @Test
+    @DisplayName("Should getTotalAmount - CartItem quantity 0. Result 0.0")
+    void getTotalAmountQuantity0() {
+        Book bookGetAmount = new Book();
+        bookGetAmount.setPrice(10);
+        CartItem cartItemGetAmount = new CartItem();
+        cartItemGetAmount.setBook(bookGetAmount);
+        List<CartItem> cartItemListGetAmount = new ArrayList<>();
+        cartItemListGetAmount.add(cartItemGetAmount);
+        given(cartItemRepoMock.findAll()).willReturn(cartItemListGetAmount);
+
+        double result = cartItemService.getTotalAmount();
+
+        assertThat(result, is(0.0));
     }
 }

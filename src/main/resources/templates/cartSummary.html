@@ -27,10 +27,10 @@
             <li>Phone: <span th:utext="${summary.customerInfo.getCustomerPhone()}"></span></li>
         </ul>
         <h3>Cart Summary:</h3>
-        <ul th:each="summary  :  ${cartSummary}">
+        <ul>
             <li>Total amount:
                 <span class="total"
-                      th:utext="${#numbers.formatDecimal(summary.totalAmount,1,2,'COMMA')}">
+                      th:utext="${#numbers.formatDecimal(totalAmount,1,2,'COMMA')}">
                </span>
             </li>
         </ul>
