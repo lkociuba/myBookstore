@@ -1,32 +1,26 @@
-package com.example.myBookstore.entity;
+package com.example.myBookstore.model;
 
-import org.hibernate.annotations.CreationTimestamp;
+import com.example.myBookstore.entity.Book;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.time.LocalDateTime;
+public class BookInfo {
 
-@Entity
-public class Book implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "book_id")
     private Long bookId;
-
     private String name;
     private String description;
     private double price;
 
-    @CreationTimestamp
-    private LocalDateTime createdTime;
+    public BookInfo(){}
 
-    public Book() {
+    public BookInfo(Book book){
+        this.bookId = book.getBookId();
+        this.name = book.getName();
+        this.description = book.getDescription();
+        this.price = book.getPrice();
     }
 
-
-    public Book(String name, String description, double price) {
-        super();
+    //For JPA querry
+    public BookInfo(Long bookId, String name, String description, double price) {
+        this.bookId = bookId;
         this.name = name;
         this.description = description;
         this.price = price;
@@ -59,13 +53,4 @@ public class Book implements Serializable {
     public void setPrice(double price) {
         this.price = price;
     }
-
-    public LocalDateTime getCreatedTime() {
-        return createdTime;
-    }
-
-    public void setCreatedTime(LocalDateTime createdTime) {
-        this.createdTime = createdTime;
-    }
-
 }

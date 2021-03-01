@@ -1,4 +1,4 @@
-package com.example.myBookstore.web;
+package com.example.myBookstore.web.controller;
 
 import com.example.myBookstore.service.UserServiceImpl;
 import com.example.myBookstore.web.controller.UserRegistrationController;

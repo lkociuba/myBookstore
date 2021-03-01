@@ -20,17 +20,17 @@
 <div class="customer">
     <div class="col-md-6 col-md-offset-3">
         <h3>Customer Information:</h3>
-        <ul th:each="summary  :  ${cartSummary}">
-            <li>Name: <span th:utext="${summary.customerInfo.getCustomerName()}"></span></li>
-            <li>Address: <span th:utext="${summary.customerInfo.getCustomerAddress()}"></span></li>
-            <li>Email: <span th:utext="${summary.customerInfo.getCustomerEmail()}"></span></li>
-            <li>Phone: <span th:utext="${summary.customerInfo.getCustomerPhone()}"></span></li>
+        <ul>
+            <li>Name: <span th:utext="${cartSummary.customerInfo.customerName}"></span></li>
+            <li>Address: <span th:utext="${cartSummary.customerInfo.customerAddress}"></span></li>
+            <li>Email: <span th:utext="${cartSummary.customerInfo.customerEmail}"></span></li>
+            <li>Phone: <span th:utext="${cartSummary.customerInfo.customerPhone}"></span></li>
         </ul>
         <h3>Cart Summary:</h3>
         <ul>
             <li>Total amount:
                 <span class="total"
-                      th:utext="${#numbers.formatDecimal(totalAmount,1,2,'COMMA')}">
+                      th:utext="${#numbers.formatDecimal(cartSummary.calculatedPrice(),1,2,'COMMA')}">
                </span>
             </li>
         </ul>
@@ -40,17 +40,15 @@
         <table class="table table-striped">
             <tr>
                 <th>Name</th>
-                <th>Description</th>
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Amount</th>
             </tr>
-            <tr th:each="items  : ${cartItem}">
-                <td th:text="${items.book.name}"></td>
-                <td th:text="${items.book.description}"></td>
-                <td th:text="${#numbers.formatDecimal(items.book.price,1,2,'COMMA')}"></td>
-                <td th:text="${items.quantity}"></td>
-                <td th:text="${#numbers.formatDecimal(items.amount,1,2,'COMMA')}"></td>
+            <tr th:each="cartItem, varStatus  :  ${cartSummary.cartItemInfoList}">
+                <td th:text="${cartItem.bookInfo.name}"></td>
+                <td th:text="${#numbers.formatDecimal(cartItem.bookInfo.price,1,2,'COMMA')}"></td>
+                <td th:text="${cartItem.quantity}"></td>
+                <td th:text="${#numbers.formatDecimal(cartItem.amount,1,2,'COMMA')}"></td>
             </tr>
         </table>
         <div th:replace="fragments/footer :: footer"></div>

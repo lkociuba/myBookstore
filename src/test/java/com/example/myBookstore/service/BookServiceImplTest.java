@@ -53,20 +53,20 @@ class BookServiceImplTest {
     }
 
     @Test
-    @DisplayName("Should findAllBooks - Success")
+    @DisplayName("Should getBooks - Success")
     void findAllBooks() {
         given(bookRepoMock.findAll()).willReturn(bookList);
 
-        List<Book> result = bookService.findAllBooks();
+        List<Book> result = bookService.getBooks();
 
         assertThat(result.size(), is(2));
         assertThat(result, equalTo(bookList));
     }
 
     @Test
-    @DisplayName("Should findAllBooks - List is empty")
+    @DisplayName("Should getBooks - List is empty")
     void findAllBooksIsEmpty() {
-        List<Book> result = bookService.findAllBooks();
+        List<Book> result = bookService.getBooks();
 
         assertThat(result.size(), is(0));
     }
@@ -76,13 +76,13 @@ class BookServiceImplTest {
     }
 
     @Test
-    @DisplayName("Should saveBook - Not null value")
+    @DisplayName("Should addBook - Not null value")
     void saveBook() {
         given(bookRepoMock.save(anyObject())).willReturn(new Book());
 
         BookAddDto bookAddDto = new BookAddDto();
 
-        assertThat(bookService.saveBook(bookAddDto), is(notNullValue()));
+        assertThat(bookService.addBook(bookAddDto), is(notNullValue()));
     }
 
     @Test

@@ -20,7 +20,7 @@ public class BookListController {
 
     @GetMapping("/bookList")
     public String showProductList(ModelMap model) {
-        model.put("books", bookService.findAllBooks());
+        model.put("books", bookService.getBooks());
         return "bookList";
     }
 
@@ -36,7 +36,7 @@ public class BookListController {
                                      ModelMap model) {
         int pageSize = 5;
 
-        Page<Book> page = bookService.findAllBooksPaginategAndSorted(pageNumber, pageSize, sortField, sortDirection);
+        Page<Book> page = bookService.getBooksPaginategAndSorted(pageNumber, pageSize, sortField, sortDirection);
         List<Book> bookList = page.getContent();
 
 

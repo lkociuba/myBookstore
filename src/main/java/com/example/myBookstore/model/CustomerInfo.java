@@ -1,38 +1,22 @@
-package com.example.myBookstore.entity;
+package com.example.myBookstore.model;
 
-import javax.persistence.*;
+import com.example.myBookstore.web.dto.CustomerInfoAddDto;
 
-@Entity
 public class CustomerInfo {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long customerInfoId;
-
     private String customerName;
     private String customerAddress;
     private String customerEmail;
     private String customerPhone;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cart_sumary_id")
-    private CartSummary cartSummary;
-
     public CustomerInfo() {
     }
 
-    public CustomerInfo(String customerName, String customerAddress, String customerEmail, String customerPhone) {
-        super();
-        this.customerName = customerName;
-        this.customerAddress = customerAddress;
-        this.customerEmail = customerEmail;
-        this.customerPhone = customerPhone;
+    public CustomerInfo(CustomerInfoAddDto customerInfoAddDto) {
+        this.customerName = customerInfoAddDto.getCustomerName();
+        this.customerAddress = customerInfoAddDto.getCustomerAddress();
+        this.customerEmail = customerInfoAddDto.getCustomerEmail();
+        this.customerPhone = customerInfoAddDto.getCustomerPhone();
     }
-
-    public Long getCustomerInfoId() {
-        return customerInfoId;
-    }
-
 
     public String getCustomerName() {
         return customerName;
@@ -64,13 +48,5 @@ public class CustomerInfo {
 
     public void setCustomerPhone(String customerPhone) {
         this.customerPhone = customerPhone;
-    }
-
-    public CartSummary getCartSummary() {
-        return cartSummary;
-    }
-
-    public void setCartSummary(CartSummary cartSummary) {
-        this.cartSummary = cartSummary;
     }
 }

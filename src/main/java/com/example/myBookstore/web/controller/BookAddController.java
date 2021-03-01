@@ -38,7 +38,7 @@ public class BookAddController {
             return "bookAdd";
         }
 
-        bookService.saveBook(bookAddDto);
+        bookService.addBook(bookAddDto);
         return "redirect:/bookAdd?success";
     }
 }
