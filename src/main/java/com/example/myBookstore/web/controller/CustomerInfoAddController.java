@@ -37,12 +37,7 @@ public class CustomerInfoAddController {
         if (bindingResult.hasErrors()) {
             return "customerInfoAdd";
         }
-        CartInfo cartInfo = Utils.getCartSession(request);
-
-        CustomerInfo customerInfo = new CustomerInfo(customerInfoAddDto);
-
-        cartInfo.setCustomerInfo(customerInfo);
-
+        cartService.saveCustomerInfo(customerInfoAddDto, request);
         return "redirect:/customerInfoAdd?success";
     }
 

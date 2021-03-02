@@ -3,7 +3,9 @@ package com.example.myBookstore.service;
 import com.example.myBookstore.entity.Book;
 import com.example.myBookstore.model.BookInfo;
 import com.example.myBookstore.model.CartInfo;
+import com.example.myBookstore.model.CustomerInfo;
 import com.example.myBookstore.utils.Utils;
+import com.example.myBookstore.web.dto.CustomerInfoAddDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,5 +68,12 @@ public class CartServiceImpl implements CartService {
             BookInfo bookInfo = new BookInfo(book);
             cartInfo.increaseCartItemQuantity(bookInfo);
         }
+    }
+
+    @Override
+    public void saveCustomerInfo(CustomerInfoAddDto customerInfoAddDto, HttpServletRequest request) {
+        CartInfo cartInfo = Utils.getCartSession(request);
+        CustomerInfo customerInfo = new CustomerInfo(customerInfoAddDto);
+        cartInfo.setCustomerInfo(customerInfo);
     }
 }

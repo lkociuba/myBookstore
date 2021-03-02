@@ -1,6 +1,7 @@
 package com.example.myBookstore.service;
 
 import com.example.myBookstore.entity.Book;
+import com.example.myBookstore.web.dto.CustomerInfoAddDto;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,4 +15,6 @@ public interface CartService {
     void decreaseCartItemQuantity(Long bookId, HttpServletRequest request);
 
     void increaseCartItemQuantity(Long bookId, HttpServletRequest request);
+
+    void saveCustomerInfo(CustomerInfoAddDto customerInfoAddDto, HttpServletRequest request);
 }
