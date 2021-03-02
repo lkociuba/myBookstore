@@ -1,17 +1,59 @@
 package com.example.myBookstore.service;
 
+import com.example.myBookstore.dao.OrderDetailRepository;
+import com.example.myBookstore.dao.OrderRepository;
+import com.example.myBookstore.entity.Book;
+import com.example.myBookstore.entity.Order;
+import com.example.myBookstore.entity.OrderDetail;
 import com.example.myBookstore.model.CartInfo;
+import com.example.myBookstore.model.CartItemInfo;
+import com.example.myBookstore.model.CustomerInfo;
 import com.example.myBookstore.utils.Utils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Service
 public class OrderServiceImpl implements OrderService{
+
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private OrderDetailRepository orderDetailRepository;
+
+    @Autowired
+    private BookServiceImpl bookService;
+
     @Override
     public void saveOrder(HttpServletRequest request) {
         CartInfo cartInfo = Utils.getCartSession(request);
+        CustomerInfo customerInfo = cartInfo.getCustomerInfo();
 
+        Order order = new Order();
+        order.setOrderNumber(1);
+        order.setAmount(cartInfo.calculatedPrice());
+        order.setCustomerName(customerInfo.getCustomerName());
+        order.setCustomerAddress(customerInfo.getCustomerAddress());
+        order.setCustomerEmail(customerInfo.getCustomerEmail());
+        order.setCustomerPhone(customerInfo.getCustomerPhone());
+        orderRepository.save(order);
 
+        List<CartItemInfo> cartItemInfoList = cartInfo.getCartItemInfoList();
+        for (CartItemInfo item : cartItemInfoList){
+            Long bookId = item.getBookInfo().getBookId();
+            Book book = bookService.findBookById(bookId);
+
+            OrderDetail orderDetail = new OrderDetail();
+            orderDetail.setOrder(order);
+            orderDetail.setBook(book);
+            orderDetail.setPrice(item.getBookInfo().getPrice());
+            orderDetail.setQuantity(item.getQuantity());
+            orderDetail.setAmount(item.getAmount());
+
+            orderDetailRepository.save(orderDetail);
+        }
     }
 }

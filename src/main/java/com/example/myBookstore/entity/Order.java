@@ -22,7 +22,6 @@ public class Order implements Serializable {
     private double amount;
 
     @CreationTimestamp
-    @NotNull
     private LocalDateTime createdTime;
 
     @Column(length = 255, nullable = false)
