@@ -82,4 +82,8 @@ public class CartInfo {
         }
         return totalAmount;
     }
+
+    public boolean isEmpty(){
+        return this.cartItemInfoList.isEmpty();
+    }
 }

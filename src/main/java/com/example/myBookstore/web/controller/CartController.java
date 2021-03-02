@@ -63,6 +63,15 @@ public class CartController {
     @GetMapping("/cartSummary")
     public String showCartSummary(HttpServletRequest request, ModelMap model) {
         CartInfo cartInfo = Utils.getCartSession(request);
+
+        if (cartInfo.isEmpty() || cartInfo == null) {
+            return "redirect:/cart";
+        }
+
+        if (cartInfo.getCustomerInfo() == null) {
+            return "redirect:/customerInfoAdd";
+        }
+
         model.addAttribute("cartSummary", cartInfo);
         return "cartSummary";
     }
