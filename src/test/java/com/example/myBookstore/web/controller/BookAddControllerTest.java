@@ -1,6 +1,6 @@
 package com.example.myBookstore.web.controller;
 
-import com.example.myBookstore.service.BookServiceImpl;
+import com.example.myBookstore.service.CataloqueServiceImpl;
 import com.example.myBookstore.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -22,7 +21,7 @@ class BookAddControllerTest {
     private UserService userService;
 
     @MockBean
-    private BookServiceImpl bookService;
+    private CataloqueServiceImpl bookService;
 
     @Test
     void bookAddDto() {

@@ -7,6 +7,7 @@ import com.example.myBookstore.web.dto.UserRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -32,6 +33,35 @@ public class UserServiceImpl implements UserService {
                 registrationDto.getLastName(), registrationDto.getEmail(),
                 passwordEncoder.encode(registrationDto.getPassword()), new HashSet<Role>(Arrays.asList(new Role("ROLE_USER"))));
         return userRepository.save(user);
+    }
+
+    @Override
+    public Long getLoogedUserId() throws UsernameNotFoundException{
+        String username = getLoggedinUserNamer();
+        User user = userRepository.findByEmail(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not exist");
+        }
+        return user.getId();
+    }
+
+    @Override
+    public User findUser() {
+        String username = getLoggedinUserNamer();
+        User user = userRepository.findByEmail(username);
+
+        return user;
+    }
+
+    private String getLoggedinUserNamer() {
+        Object principal = SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            return ((UserDetails) principal).getUsername();
+        }
+
+        return principal.toString();
     }
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {

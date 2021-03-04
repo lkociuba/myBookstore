@@ -19,46 +19,45 @@ public class CartController {
     private CartServiceImpl cartService;
 
     @GetMapping("/cart")
-    public String showCart(HttpServletRequest request, ModelMap model) {
-        CartInfo cartInfo = Utils.getCartSession(request);
-        model.addAttribute("shoppingCart", cartInfo);
+    public String showCart(ModelMap model) {
+        model.addAttribute("cart", cartService.getCartItems());
+        model.addAttribute("calculatedPrice", cartService.calculatedPrice());
         return "cart";
     }
 
     @GetMapping("/buyBook/{bookId}")
-    public String addBookToShoppingCart(@PathVariable(value = "bookId") Long bookId,
-                                        HttpServletRequest request, ModelMap model) {
-        cartService.addCartItem(bookId, request);
+    public String addBookToShoppingCart(@PathVariable(value = "bookId") Long bookId, ModelMap model) {
+        cartService.addCartItem(bookId);
         return "redirect:/cart";
     }
 
     @GetMapping("/page/buyBook/{bookId}")
-    public String addBookToShoppingCartFromPaginatedPage(@PathVariable(value = "bookId") Long bookId,
-                                                         HttpServletRequest request, ModelMap model) {
-        cartService.addCartItem(bookId, request);
+    public String addBookToShoppingCartFromPaginatedPage(@PathVariable(value = "bookId") Long bookId, ModelMap model) {
+        cartService.addCartItem(bookId);
         return "redirect:/cart";
     }
 
-    @GetMapping("deleteCartItem/{bookId}")
-    public String deleteCartItemFromShoppingCart(@PathVariable(value = "bookId") Long bookId,
-                                                 HttpServletRequest request, ModelMap model) {
-        cartService.deleteCartItem(bookId, request);
+    @GetMapping("deleteCartItem/{cartItemId}")
+    public String deleteCartItemFromShoppingCart(@PathVariable(value = "cartItemId") Long cartItemId, ModelMap model) {
+        cartService.deleteCartItem(cartItemId);
         return "redirect:/cart";
     }
 
-    @GetMapping("/removeOneCartItem/{bookId}")
-    public String removeOneCartItemFromShoppingCart(@PathVariable(value = "bookId") Long bookId,
-                                                    HttpServletRequest request, ModelMap model) {
-        cartService.decreaseCartItemQuantity(bookId, request);
+    @GetMapping("/decreaseCartItemQuantity/{cartItemId}")
+    public String decreaseCartItemQuantity(@PathVariable(value = "cartItemId") Long cartItemId,  ModelMap model) {
+        cartService.decreaseCartItemQuantity(cartItemId);
         return "redirect:/cart";
     }
 
-    @GetMapping("/addOneCartItem/{bookId}")
-    public String addOneCartItemToShoppingCart(@PathVariable(value = "bookId") Long bookId,
-                                               HttpServletRequest request, ModelMap model) {
-        cartService.increaseCartItemQuantity(bookId, request);
+    @GetMapping("/increaseCartItemQuantity/{cartItemId}")
+    public String increaseCartItemQuantity(@PathVariable(value = "cartItemId") Long cartItemId, ModelMap model) {
+        cartService.increaseCartItemQuantity(cartItemId);
         return "redirect:/cart";
     }
+
+
+
+
 
     @GetMapping("/cartSummary")
     public String showCartSummary(HttpServletRequest request, ModelMap model) {

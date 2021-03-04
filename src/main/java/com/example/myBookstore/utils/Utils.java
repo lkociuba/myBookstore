@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class Utils {
 
+
     public static CartInfo getCartSession(HttpServletRequest request) {
 
         CartInfo cartInfo = (CartInfo) request.getSession().getAttribute("shopingCart");

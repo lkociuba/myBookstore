@@ -1,79 +1,45 @@
 package com.example.myBookstore.service;
 
-import com.example.myBookstore.entity.Book;
-import com.example.myBookstore.model.BookInfo;
-import com.example.myBookstore.model.CartInfo;
-import com.example.myBookstore.model.CustomerInfo;
-import com.example.myBookstore.utils.Utils;
-import com.example.myBookstore.web.dto.CustomerInfoAddDto;
+import com.example.myBookstore.entity.CartItem;
+import com.example.myBookstore.model.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Service
 public class CartServiceImpl implements CartService {
 
     @Autowired
-    private BookServiceImpl bookService;
+    private Cart cart;
 
     @Override
-    public Book checkBookExist(Long bookId) {
-        Book book = null;
-        if (bookId != null && bookId > 1) {
-            book = bookService.findBookById(bookId);
-        }
-        return book;
+    public void deleteCartItem(Long cartItemId) {
+        cart.deleteCartItem(cartItemId);
     }
 
     @Override
-    public void addCartItem(Long bookId, HttpServletRequest request) {
-        Book book = this.checkBookExist(bookId);
-
-        if (book != null) {
-            CartInfo cartInfo = Utils.getCartSession(request);
-            BookInfo bookInfo = new BookInfo(book);
-            cartInfo.addCartItem(bookInfo);
-        }
+    public List<CartItem> getCartItems() {
+        return cart.getCartItems();
     }
 
     @Override
-    public void deleteCartItem(Long bookId, HttpServletRequest request) {
-        Book book = this.checkBookExist(bookId);
-
-        if (book != null) {
-            CartInfo cartInfo = Utils.getCartSession(request);
-            BookInfo bookInfo = new BookInfo(book);
-            cartInfo.deleteCartItem(bookInfo);
-        }
+    public void addCartItem(Long bookId) {
+        cart.addCartItem(bookId);
     }
 
     @Override
-    public void decreaseCartItemQuantity(Long bookId, HttpServletRequest request) {
-        Book book = this.checkBookExist(bookId);
-
-        if (book != null) {
-            CartInfo cartInfo = Utils.getCartSession(request);
-            BookInfo bookInfo = new BookInfo(book);
-            cartInfo.decreaseCartItemQuantity(bookInfo);
-        }
+    public void increaseCartItemQuantity(Long cartItemId) {
+        cart.increaseCartItemQuantity(cartItemId);
     }
 
     @Override
-    public void increaseCartItemQuantity(Long bookId, HttpServletRequest request) {
-        Book book = this.checkBookExist(bookId);
-
-        if (book != null) {
-            CartInfo cartInfo = Utils.getCartSession(request);
-            BookInfo bookInfo = new BookInfo(book);
-            cartInfo.increaseCartItemQuantity(bookInfo);
-        }
+    public void decreaseCartItemQuantity(Long cartItemId) {
+        cart.decreaseCartItemQuantity(cartItemId);
     }
 
     @Override
-    public void saveCustomerInfo(CustomerInfoAddDto customerInfoAddDto, HttpServletRequest request) {
-        CartInfo cartInfo = Utils.getCartSession(request);
-        CustomerInfo customerInfo = new CustomerInfo(customerInfoAddDto);
-        cartInfo.setCustomerInfo(customerInfo);
+    public double calculatedPrice() {
+        return cart.calculatedPrice();
     }
 }

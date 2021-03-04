@@ -1,7 +1,7 @@
 package com.example.myBookstore.web.controller;
 
 import com.example.myBookstore.entity.Book;
-import com.example.myBookstore.service.BookService;
+import com.example.myBookstore.service.CataloqueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -16,11 +16,11 @@ import java.util.List;
 public class BookListController {
 
     @Autowired
-    private BookService bookService;
+    private CataloqueService cataloqueService;
 
     @GetMapping("/bookList")
     public String showProductList(ModelMap model) {
-        model.put("books", bookService.getBooks());
+        model.put("books", cataloqueService.getBooks());
         return "bookList";
     }
 
@@ -36,7 +36,7 @@ public class BookListController {
                                      ModelMap model) {
         int pageSize = 5;
 
-        Page<Book> page = bookService.getBooksPaginategAndSorted(pageNumber, pageSize, sortField, sortDirection);
+        Page<Book> page = cataloqueService.getBooksPaginategAndSorted(pageNumber, pageSize, sortField, sortDirection);
         List<Book> bookList = page.getContent();
 
 

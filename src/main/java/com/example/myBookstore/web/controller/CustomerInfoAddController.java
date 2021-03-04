@@ -40,7 +40,7 @@ public class CustomerInfoAddController {
         if (bindingResult.hasErrors()) {
             return "customerInfoAdd";
         }
-        cartService.saveCustomerInfo(customerInfoAddDto, request);
+
         return "redirect:/customerInfoAdd?success";
     }
 }

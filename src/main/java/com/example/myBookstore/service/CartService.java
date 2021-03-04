@@ -1,20 +1,20 @@
 package com.example.myBookstore.service;
 
-import com.example.myBookstore.entity.Book;
-import com.example.myBookstore.web.dto.CustomerInfoAddDto;
+import com.example.myBookstore.entity.CartItem;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 public interface CartService {
-    Book checkBookExist(Long bookId);
 
-    void addCartItem(Long bookId, HttpServletRequest request);
+    void deleteCartItem(Long cartItemId);
 
-    void deleteCartItem(Long bookId, HttpServletRequest request);
+    List<CartItem> getCartItems();
 
-    void decreaseCartItemQuantity(Long bookId, HttpServletRequest request);
+    void addCartItem(Long bookId);
 
-    void increaseCartItemQuantity(Long bookId, HttpServletRequest request);
+    void increaseCartItemQuantity(Long cartItemId);
 
-    void saveCustomerInfo(CustomerInfoAddDto customerInfoAddDto, HttpServletRequest request);
+    void decreaseCartItemQuantity(Long cartItemId);
+
+    double calculatedPrice();
 }

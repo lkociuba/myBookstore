@@ -21,6 +21,9 @@ public class Book implements Serializable {
     @CreationTimestamp
     private LocalDateTime createdTime;
 
+    @OneToOne(mappedBy = "book")
+    private CartItem cartItem;
+
     public Book() {
     }
 
@@ -68,4 +71,11 @@ public class Book implements Serializable {
         this.createdTime = createdTime;
     }
 
+    public CartItem getCartItem() {
+        return cartItem;
+    }
+
+    public void setCartItem(CartItem cartItem) {
+        this.cartItem = cartItem;
+    }
 }

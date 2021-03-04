@@ -1,7 +1,7 @@
 
 package com.example.myBookstore.web.controller;
 
-import com.example.myBookstore.service.BookService;
+import com.example.myBookstore.service.CataloqueService;
 import com.example.myBookstore.web.dto.BookAddDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ import javax.validation.Valid;
 public class BookAddController {
 
     @Autowired
-    private BookService bookService;
+    private CataloqueService cataloqueService;
 
     @ModelAttribute("book")
     public BookAddDto bookAddDto() {
@@ -38,7 +38,7 @@ public class BookAddController {
             return "bookAdd";
         }
 
-        bookService.addBook(bookAddDto);
+        cataloqueService.addBook(bookAddDto);
         return "redirect:/bookAdd?success";
     }
 }

@@ -23,13 +23,13 @@ import static org.mockito.BDDMockito.given;
 
 
 @ExtendWith(MockitoExtension.class)
-class BookServiceImplTest {
+class CataloqueServiceImplTest {
 
     @Mock
     private BookRepository bookRepoMock;
 
     @InjectMocks
-    private BookServiceImpl bookService;
+    private CataloqueServiceImpl bookService;
 
     private Book bookInit1;
     private Book bookInit2;

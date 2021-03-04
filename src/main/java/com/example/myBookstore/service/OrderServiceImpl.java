@@ -25,7 +25,7 @@ public class OrderServiceImpl implements OrderService{
     private OrderDetailRepository orderDetailRepository;
 
     @Autowired
-    private BookServiceImpl bookService;
+    private CataloqueServiceImpl bookService;
 
     @Override
     public void saveOrder(HttpServletRequest request) {
