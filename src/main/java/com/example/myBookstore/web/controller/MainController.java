@@ -21,7 +21,7 @@ public class MainController {
 
     @GetMapping("/")
     public String showWelcomePage(ModelMap model) {
-        model.addAttribute("userName", userService.getLoggedinUserNamer());
+        model.addAttribute("userName", userService.getLoggedinUserName());
         return "index";
     }
 }

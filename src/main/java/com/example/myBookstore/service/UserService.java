@@ -11,5 +11,5 @@ public interface UserService extends UserDetailsService {
 
     User findUser();
 
-    String getLoggedinUserNamer();
+    String getLoggedinUserName();
 }

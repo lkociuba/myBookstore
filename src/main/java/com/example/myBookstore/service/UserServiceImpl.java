@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Long getLoogedUserId() throws UsernameNotFoundException {
-        String username = getLoggedinUserNamer();
+        String username = getLoggedinUserName();
         User user = userRepository.findByEmail(username);
         if (user == null) {
             throw new UsernameNotFoundException("User not exist");
@@ -47,14 +47,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findUser() {
-        String username = getLoggedinUserNamer();
+        String username = getLoggedinUserName();
         User user = userRepository.findByEmail(username);
 
         return user;
     }
 
     @Override
-    public String getLoggedinUserNamer() {
+    public String getLoggedinUserName() {
         Object principal = SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
 
