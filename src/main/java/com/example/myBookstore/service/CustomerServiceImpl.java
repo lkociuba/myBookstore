@@ -7,8 +7,6 @@ import com.example.myBookstore.web.dto.CustomerInfoAddDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
@@ -31,5 +29,11 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerInfo findCustomerInfo() {
         User user = userService.findUser();
         return customerRepository.findByUser(user);
+    }
+
+    @Override
+    public void deleteCustomerIfoAfterSaveOrder() {
+        CustomerInfo customerInfo = this.findCustomerInfo();
+        customerRepository.delete(customerInfo);
     }
 }

@@ -24,8 +24,14 @@ public class OrderItem {
     @NotNull
     private int quantity;
 
-    @NotNull
-    private double amount;
+    public OrderItem(){}
+
+    public OrderItem(Order order, Book book) {
+        this.order = order;
+        this.book = book;
+        this.price = book.getPrice();
+        this.quantity = book.getCartItem().getQuantity();
+    }
 
     public Long getId() {
         return id;
@@ -61,13 +67,5 @@ public class OrderItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
     }
 }

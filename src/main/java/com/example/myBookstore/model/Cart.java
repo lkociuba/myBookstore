@@ -105,4 +105,11 @@ public class Cart {
         }
         return calculatedPrice;
     }
+
+    public void deleteCartItemsAfterSaveOrder(){
+        List<CartItem> cartItemList = this.getCartItems();
+        for (CartItem item : cartItemList){
+            cartItemRepository.delete(item);
+        }
+    }
 }

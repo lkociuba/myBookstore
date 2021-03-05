@@ -17,4 +17,6 @@ public interface CartService {
     void decreaseCartItemQuantity(Long cartItemId);
 
     double calculatedPrice();
+
+    void deleteCartItemsAfterSaveOrder();
 }

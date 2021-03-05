@@ -42,4 +42,9 @@ public class CartServiceImpl implements CartService {
     public double calculatedPrice() {
         return cart.calculatedPrice();
     }
+
+    @Override
+    public void deleteCartItemsAfterSaveOrder() {
+        cart.deleteCartItemsAfterSaveOrder();
+    }
 }
