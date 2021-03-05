@@ -2,18 +2,10 @@ package com.example.myBookstore.service;
 
 import com.example.myBookstore.dao.OrderDetailRepository;
 import com.example.myBookstore.dao.OrderRepository;
-import com.example.myBookstore.entity.Book;
-import com.example.myBookstore.entity.Order;
-import com.example.myBookstore.entity.OrderDetail;
-import com.example.myBookstore.model.CartInfo;
-import com.example.myBookstore.model.CartItemInfo;
-import com.example.myBookstore.model.CustomerInfo;
-import com.example.myBookstore.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+
 
 @Service
 public class OrderServiceImpl implements OrderService{
@@ -29,6 +21,7 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public void saveOrder(HttpServletRequest request) {
+       /*
         CartInfo cartInfo = Utils.getCartSession(request);
         CustomerInfo customerInfo = cartInfo.getCustomerInfo();
 
@@ -55,5 +48,7 @@ public class OrderServiceImpl implements OrderService{
 
             orderDetailRepository.save(orderDetail);
         }
+
+        */
     }
 }

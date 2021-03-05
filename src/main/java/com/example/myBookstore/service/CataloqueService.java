@@ -1,7 +1,6 @@
 package com.example.myBookstore.service;
 
 import com.example.myBookstore.entity.Book;
-import com.example.myBookstore.model.BookInfo;
 import com.example.myBookstore.web.dto.BookAddDto;
 import org.springframework.data.domain.Page;
 
@@ -15,6 +14,4 @@ public interface CataloqueService {
     Book addBook(BookAddDto savingDto);
 
     Book findBookById(Long bookId);
-
-    BookInfo getBookInfo(Long bookId);
 }

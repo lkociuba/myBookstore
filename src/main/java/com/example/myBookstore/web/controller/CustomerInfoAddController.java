@@ -1,8 +1,6 @@
 package com.example.myBookstore.web.controller;
 
-import com.example.myBookstore.model.CartInfo;
-import com.example.myBookstore.service.CartServiceImpl;
-import com.example.myBookstore.utils.Utils;
+import com.example.myBookstore.service.CustomerServiceImpl;
 import com.example.myBookstore.web.dto.CustomerInfoAddDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +8,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
@@ -18,7 +15,7 @@ import javax.validation.Valid;
 public class CustomerInfoAddController {
 
     @Autowired
-    private CartServiceImpl cartService;
+    private CustomerServiceImpl customerService;
 
     @ModelAttribute("customerInfo")
     public CustomerInfoAddDto customerInfoAddDto() {
@@ -26,21 +23,22 @@ public class CustomerInfoAddController {
     }
 
     @GetMapping
-    public String showCustromerInfoPage(HttpServletRequest request, ModelMap model) {
-        CartInfo cartInfo = Utils.getCartSession(request);
-        if (cartInfo.isEmpty()){
-            return "redirect:/cart";
-        }
+    public String showCustromerInfoPage(ModelMap model) {
         return "customerInfoAdd";
     }
 
     @PostMapping
     public String addCustomerInfoToCartSummary(@Valid @ModelAttribute("customerInfo") CustomerInfoAddDto customerInfoAddDto,
-                                               HttpServletRequest request, BindingResult bindingResult) {
+                                               BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "customerInfoAdd";
         }
 
+        if (customerService.findCustomerInfo() != null) {
+            return "redirect:/cartSummary";
+        }
+
+        customerService.saveCustomerInfoToCartSummary(customerInfoAddDto);
         return "redirect:/customerInfoAdd?success";
     }
 }

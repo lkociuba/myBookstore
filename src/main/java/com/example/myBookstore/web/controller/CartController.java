@@ -1,22 +1,22 @@
 package com.example.myBookstore.web.controller;
 
-
-import com.example.myBookstore.model.CartInfo;
 import com.example.myBookstore.service.CartServiceImpl;
-import com.example.myBookstore.utils.Utils;
+import com.example.myBookstore.service.CustomerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class CartController {
 
     @Autowired
     private CartServiceImpl cartService;
+
+    @Autowired
+    private CustomerServiceImpl customerService;
 
     @GetMapping("/cart")
     public String showCart(ModelMap model) {
@@ -44,7 +44,7 @@ public class CartController {
     }
 
     @GetMapping("/decreaseCartItemQuantity/{cartItemId}")
-    public String decreaseCartItemQuantity(@PathVariable(value = "cartItemId") Long cartItemId,  ModelMap model) {
+    public String decreaseCartItemQuantity(@PathVariable(value = "cartItemId") Long cartItemId, ModelMap model) {
         cartService.decreaseCartItemQuantity(cartItemId);
         return "redirect:/cart";
     }
@@ -55,23 +55,13 @@ public class CartController {
         return "redirect:/cart";
     }
 
-
-
-
-
     @GetMapping("/cartSummary")
-    public String showCartSummary(HttpServletRequest request, ModelMap model) {
-        CartInfo cartInfo = Utils.getCartSession(request);
-
-        if (cartInfo.isEmpty() || cartInfo == null) {
-            return "redirect:/cart";
-        }
-
-        if (cartInfo.getCustomerInfo() == null) {
-            return "redirect:/customerInfoAdd";
-        }
-
-        model.addAttribute("cartSummary", cartInfo);
+    public String showCartSummary(ModelMap model) {
+        model.addAttribute("cart", cartService.getCartItems());
+        model.addAttribute("calculatedPrice", cartService.calculatedPrice());
+        model.addAttribute("customerInfo", customerService.findCustomerInfo());
         return "cartSummary";
+
     }
+
 }
