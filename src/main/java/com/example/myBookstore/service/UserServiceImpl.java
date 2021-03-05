@@ -53,7 +53,8 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-    private String getLoggedinUserNamer() {
+    @Override
+    public String getLoggedinUserNamer() {
         Object principal = SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
 

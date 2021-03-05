@@ -28,7 +28,8 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private CustomerServiceImpl customerService;
 
-    private int getOrderMaxNumber() {
+    @Override
+    public int getOrderMaxNumber() {
         int maxOrderNumber = 0;
         List<Order> orderList = this.getOrders();
         if (orderList.isEmpty()) {

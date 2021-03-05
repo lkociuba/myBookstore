@@ -6,8 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Controller
 public class OrderController {
 
@@ -17,6 +15,12 @@ public class OrderController {
     @GetMapping("/saveOrder")
     public String showCart(ModelMap model) {
         orderService.saveOrder();
-        return "redirect:/cart";
+        return "redirect:/orderFinalize";
+    }
+
+    @GetMapping("/orderFinalize")
+    public String showSavedOrderNumber(ModelMap model){
+        model.addAttribute("orderNumber", orderService.getOrderMaxNumber());
+        return "orderFinalize";
     }
 }

@@ -10,4 +10,6 @@ public interface UserService extends UserDetailsService {
     Long getLoogedUserId();
 
     User findUser();
+
+    String getLoggedinUserNamer();
 }
