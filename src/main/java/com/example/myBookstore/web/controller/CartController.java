@@ -2,6 +2,7 @@ package com.example.myBookstore.web.controller;
 
 import com.example.myBookstore.service.CartServiceImpl;
 import com.example.myBookstore.service.CustomerServiceImpl;
+import com.example.myBookstore.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,6 +19,9 @@ public class CartController {
     @Autowired
     private CustomerServiceImpl customerService;
 
+    @Autowired
+    private UserServiceImpl userService;
+
     @GetMapping("/cart")
     public String showCart(ModelMap model) {
         model.addAttribute("cart", cartService.getCartItems());
@@ -27,6 +31,9 @@ public class CartController {
 
     @GetMapping("/buyBook/{bookId}")
     public String addBookToShoppingCart(@PathVariable(value = "bookId") Long bookId, ModelMap model) {
+        if (userService.findUser() == null){
+            return "redirect:/login";
+        }
         cartService.addCartItem(bookId);
         return "redirect:/cart";
     }
