@@ -15,8 +15,8 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping("/saveOrder")
-    public String showCart(HttpServletRequest request, ModelMap model) {
-        orderService.saveOrder(request);
+    public String showCart(ModelMap model) {
+        orderService.saveOrder();
         return "redirect:/cart";
     }
 }

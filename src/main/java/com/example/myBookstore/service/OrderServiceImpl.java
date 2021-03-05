@@ -4,7 +4,6 @@ import com.example.myBookstore.dao.OrderItemRepository;
 import com.example.myBookstore.dao.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import javax.servlet.http.HttpServletRequest;
 
 
 @Service
@@ -20,7 +19,7 @@ public class OrderServiceImpl implements OrderService{
     private CataloqueServiceImpl bookService;
 
     @Override
-    public void saveOrder(HttpServletRequest request) {
+    public void saveOrder() {
        /*
         CartInfo cartInfo = Utils.getCartSession(request);
         CustomerInfo customerInfo = cartInfo.getCustomerInfo();

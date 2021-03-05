@@ -16,7 +16,7 @@ public class CartItem implements Serializable {
 
     private int quantity;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
