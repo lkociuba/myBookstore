@@ -19,7 +19,7 @@ public class OrderController {
     }
 
     @GetMapping("/orderFinalize")
-    public String showSavedOrderNumber(ModelMap model){
+    public String showSavedOrderNumber(ModelMap model) {
         model.addAttribute("orderNumber", orderService.getOrderMaxNumber());
         return "orderFinalize";
     }

@@ -96,7 +96,7 @@ public class Cart {
         }
     }
 
-    public double calculatedPrice(){
+    public double calculatedPrice() {
         double calculatedPrice = 0;
         List<CartItem> cartItemList = this.getCartItems();
 
@@ -106,9 +106,9 @@ public class Cart {
         return calculatedPrice;
     }
 
-    public void deleteCartItemsAfterSaveOrder(){
+    public void deleteCartItemsAfterSaveOrder() {
         List<CartItem> cartItemList = this.getCartItems();
-        for (CartItem item : cartItemList){
+        for (CartItem item : cartItemList) {
             cartItemRepository.delete(item);
         }
     }

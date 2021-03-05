@@ -20,12 +20,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private UserService userService;
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider(){
+    public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
         auth.setUserDetailsService(userService);
         auth.setPasswordEncoder(passwordEncoder());
@@ -40,15 +40,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers(
-                //"/welcome",
-               // "/book-list",
-               // "/registration**",
-                //"/js/**",
-               // "/css/**",
-               // "/img/**",
-                //"/images/**",
-                "/**").permitAll()
-                //.antMatchers("/bookList", "/bookAdd").access("hasRole('EMPLOYEE')")
+                "/error/**",
+                "/",
+                "/login/**",
+                "/registration/**",
+                "/paginatedBookList/**",
+                "/js/**",
+                "/css/**",
+                "/img/**",
+                "/images/**").permitAll()
+                .antMatchers("/cart/**",
+                        "/cartSummary/**",
+                        "/customerInfoAdd/**",
+                        "/orderFinalize/**").access("hasRole('USER')")
+                .antMatchers("/bookList/**",
+                        "/bookAdd/**").access("hasRole('EMPLOYEE')")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()

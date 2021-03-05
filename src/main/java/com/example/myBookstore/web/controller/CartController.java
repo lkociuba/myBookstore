@@ -31,7 +31,7 @@ public class CartController {
 
     @GetMapping("/buyBook/{bookId}")
     public String addBookToShoppingCart(@PathVariable(value = "bookId") Long bookId, ModelMap model) {
-        if (userService.findUser() == null){
+        if (userService.findUser() == null) {
             return "redirect:/login";
         }
         cartService.addCartItem(bookId);

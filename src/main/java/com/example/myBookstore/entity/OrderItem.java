@@ -24,7 +24,8 @@ public class OrderItem {
     @NotNull
     private int quantity;
 
-    public OrderItem(){}
+    public OrderItem() {
+    }
 
     public OrderItem(Order order, Book book) {
         this.order = order;

@@ -21,7 +21,8 @@ public class CustomerInfo implements Serializable {
     private String customerEmail;
     private String customerPhone;
 
-    public CustomerInfo(){}
+    public CustomerInfo() {
+    }
 
     public CustomerInfo(CustomerInfoAddDto customerInfoAddDto) {
         this.customerName = customerInfoAddDto.getCustomerName();

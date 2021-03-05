@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Long getLoogedUserId() throws UsernameNotFoundException{
+    public Long getLoogedUserId() throws UsernameNotFoundException {
         String username = getLoggedinUserNamer();
         User user = userRepository.findByEmail(username);
         if (user == null) {

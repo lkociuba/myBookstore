@@ -40,7 +40,8 @@ public class Order implements Serializable {
     @Column(length = 255, nullable = false)
     private String customerPhone;
 
-    public Order(){}
+    public Order() {
+    }
 
     public Order(User user, int orderNumber, double calculatedPrice, CustomerInfo customerInfo) {
         this.user = user;
