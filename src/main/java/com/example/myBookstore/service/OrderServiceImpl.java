@@ -1,6 +1,6 @@
 package com.example.myBookstore.service;
 
-import com.example.myBookstore.dao.OrderDetailRepository;
+import com.example.myBookstore.dao.OrderItemRepository;
 import com.example.myBookstore.dao.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ public class OrderServiceImpl implements OrderService{
     private OrderRepository orderRepository;
 
     @Autowired
-    private OrderDetailRepository orderDetailRepository;
+    private OrderItemRepository orderItemRepository;
 
     @Autowired
     private CataloqueServiceImpl bookService;
@@ -39,7 +39,7 @@ public class OrderServiceImpl implements OrderService{
             Long bookId = item.getBookInfo().getBookId();
             Book book = bookService.findBookById(bookId);
 
-            OrderDetail orderDetail = new OrderDetail();
+            OrderItem orderDetail = new OrderItem();
             orderDetail.setOrder(order);
             orderDetail.setBook(book);
             orderDetail.setPrice(item.getBookInfo().getPrice());

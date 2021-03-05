@@ -1,9 +1,9 @@
 package com.example.myBookstore.dao;
 
-import com.example.myBookstore.entity.OrderDetail;
+import com.example.myBookstore.entity.OrderItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> {
+public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
 }

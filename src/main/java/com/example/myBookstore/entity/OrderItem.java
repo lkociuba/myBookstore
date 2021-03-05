@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class OrderDetail {
+public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
