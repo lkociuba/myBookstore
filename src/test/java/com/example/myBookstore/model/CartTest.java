@@ -40,6 +40,7 @@ class CartTest {
     private Cart cart;
 
     private User userInit1;
+    private Book bookInit1;
     private CartItem cartItemInit1;
     private CartItem cartItemInit2;
     private List<CartItem> cartItemListInit;
@@ -49,11 +50,15 @@ class CartTest {
         userInit1 = new User();
         userInit1.setId(1L);
 
+        bookInit1 = new Book();
+
         cartItemInit1 = new CartItem();
         cartItemInit1.setUser(userInit1);
+        cartItemInit1.setBook(bookInit1);
 
         cartItemInit2 = new CartItem();
         cartItemInit2.setUser(userInit1);
+        cartItemInit2.setBook(bookInit1);
 
         cartItemListInit = new ArrayList<>();
         cartItemListInit.add(cartItemInit1);
@@ -83,10 +88,30 @@ class CartTest {
     }
 
     @Test
+    @DisplayName("Shuld addCartItem - Increase CartItem quanntiyy")
     void addCartItem() {
-
+        bookInit1.setCartItem(cartItemInit1);
+        cartItemInit1.setQuantity(1);
         given(userServiceMock.findUser()).willReturn(userInit1);
+        given(cataloqueServiceMock.findBookById(Mockito.anyLong())).willReturn(bookInit1);
 
+        cart.addCartItem(1L);
+
+        assertThat(cartItemInit1.getQuantity(), is(2));
+    }
+
+    @Test
+    @DisplayName("Shuld addCartItem - Increase CartItem quanntiyy")
+    void addCartItemPassCreateNew() {
+        bookInit1.setCartItem(cartItemInit1);
+        cartItemInit1.setQuantity(0);
+        given(userServiceMock.findUser()).willReturn(userInit1);
+        given(cataloqueServiceMock.findBookById(Mockito.anyLong())).willReturn(bookInit1);
+
+        cart.addCartItem(1L);
+
+        assertThat(cartItemInit1.getQuantity(), is(1));
+        verify(cartItemRepoMock, times(1)).save(Mockito.any());
     }
 
     @Test
@@ -165,11 +190,8 @@ class CartTest {
     @Test
     @DisplayName("Should calculatedPrice - Normal multiplication (result 20)")
     void calculatedPrice() {
-        Book book1 = new Book();
-        book1.setPrice(10);
-        cartItemInit1.setBook(book1);
+        bookInit1.setPrice(10);
         cartItemInit1.setQuantity(1);
-        cartItemInit2.setBook(book1);
         cartItemInit2.setQuantity(1);
         given(userServiceMock.getLoogedUserId()).willReturn(1L);
         given(cartItemRepoMock.findAll()).willReturn(cartItemListInit);
@@ -182,10 +204,7 @@ class CartTest {
     @Test
     @DisplayName("Should calculatedPrice - Pass Null value (result 10)")
     void calculatedPricePassNullValue() {
-        Book book1 = new Book();
-        book1.setPrice(10);
-        cartItemInit1.setBook(book1);
-        cartItemInit2.setBook(book1);
+        bookInit1.setPrice(10);
         cartItemInit2.setQuantity(1);
         given(userServiceMock.getLoogedUserId()).willReturn(1L);
         given(cartItemRepoMock.findAll()).willReturn(cartItemListInit);
@@ -198,11 +217,8 @@ class CartTest {
     @Test
     @DisplayName("Should calculatedPrice - Pass book price 0 (result 0)")
     void calculatedPricePass0() {
-        Book book1 = new Book();
-        book1.setPrice(0);
-        cartItemInit1.setBook(book1);
+        bookInit1.setPrice(0);
         cartItemInit1.setQuantity(1);
-        cartItemInit2.setBook(book1);
         cartItemInit2.setQuantity(1);
         given(userServiceMock.getLoogedUserId()).willReturn(1L);
         given(cartItemRepoMock.findAll()).willReturn(cartItemListInit);
