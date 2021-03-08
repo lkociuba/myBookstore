@@ -97,7 +97,7 @@ class CustomerServiceImplTest {
 
     @Test
     @DisplayName("Should deleteCustomerIfoAfterSaveOrder - Verify customerRepository.delete no invocation (CustomerInfo not found")
-    void deleteCustomerIfoAfterSaveOrderNotDelete() {
+    void deleteCustomerIfoAfterSaveOrderNotDeleted() {
         customerService.deleteCustomerIfoAfterSaveOrder();
         customerService.deleteCustomerIfoAfterSaveOrder();
 
