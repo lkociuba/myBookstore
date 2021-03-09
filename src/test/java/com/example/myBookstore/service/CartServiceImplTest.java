@@ -1,8 +1,6 @@
 package com.example.myBookstore.service;
 
-import com.example.myBookstore.entity.Book;
 import com.example.myBookstore.entity.CartItem;
-import com.example.myBookstore.entity.User;
 import com.example.myBookstore.model.Cart;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -47,11 +45,19 @@ class CartServiceImplTest {
     }
 
     @Test
-    @DisplayName("Should deleteCartItem - invoke cart.deleteCartItem")
+    @DisplayName("Should deleteCartItem - Invoke cart.deleteCartItem")
     void deleteCartItem() {
-        cartMock.deleteCartItem(1L);
+        cartService.deleteCartItem(1L);
 
         verify(cartMock, times(1)).deleteCartItem(Mockito.anyLong());
+    }
+
+    @Test
+    @DisplayName("Should deleteCartItem - Not invoke cart.deleteCartItem (pass Null value)")
+    void deleteCartItemPassNull() {
+        cartService.deleteCartItem(null);
+
+        verify(cartMock, times(0)).deleteCartItem(Mockito.anyLong());
     }
 
     @Test
@@ -65,27 +71,51 @@ class CartServiceImplTest {
     }
 
     @Test
-    @DisplayName("Should addCartItem - invoke cart.addCartItem")
+    @DisplayName("Should addCartItem - Invoke cart.addCartItem")
     void addCartItem() {
-        cartMock.addCartItem(1L);
+        cartService.addCartItem(1L);
 
         verify(cartMock, times(1)).addCartItem(Mockito.anyLong());
     }
 
     @Test
-    @DisplayName("Should increaseCartItemQuantity - invoke cart.increaseCartItemQuantity")
+    @DisplayName("Should addCartItem - Not invoke cart.addCartItem (pass Null value)")
+    void addCartItemPassNull() {
+        cartService.addCartItem(null);
+
+        verify(cartMock, times(0)).addCartItem(Mockito.anyLong());
+    }
+
+    @Test
+    @DisplayName("Should increaseCartItemQuantity - Invoke cart.increaseCartItemQuantity")
     void increaseCartItemQuantity() {
-        cartMock.increaseCartItemQuantity(1L);
+        cartService.increaseCartItemQuantity(1L);
 
         verify(cartMock, times(1)).increaseCartItemQuantity(Mockito.anyLong());
     }
 
     @Test
-    @DisplayName("Should decreaseCartItemQuantity - invoke cart.decreaseCartItemQuantity")
+    @DisplayName("Should increaseCartItemQuantity - Not invoke cart.increaseCartItemQuantity (pass Null value)")
+    void increaseCartItemQuantityPassNull() {
+        cartService.increaseCartItemQuantity(null);
+
+        verify(cartMock, times(0)).increaseCartItemQuantity(Mockito.anyLong());
+    }
+
+    @Test
+    @DisplayName("Should decreaseCartItemQuantity - Invoke cart.decreaseCartItemQuantity")
     void decreaseCartItemQuantity() {
-        cartMock.decreaseCartItemQuantity(1L);
+        cartService.decreaseCartItemQuantity(1L);
 
         verify(cartMock, times(1)).decreaseCartItemQuantity(Mockito.anyLong());
+    }
+
+    @Test
+    @DisplayName("Should decreaseCartItemQuantity - Not invoke cart.decreaseCartItemQuantity (pass Null value)")
+    void decreaseCartItemQuantityPassNull() {
+        cartService.decreaseCartItemQuantity(null);
+
+        verify(cartMock, times(0)).decreaseCartItemQuantity(Mockito.anyLong());
     }
 
     @Test
@@ -101,7 +131,7 @@ class CartServiceImplTest {
     @Test
     @DisplayName("SHould deleteCartItemsAfterSaveOrder - invoke cart.deleteCartItemsAfterSaveOrder")
     void deleteCartItemsAfterSaveOrder() {
-        cartMock.deleteCartItemsAfterSaveOrder();
+        cartService.deleteCartItemsAfterSaveOrder();
 
         verify(cartMock, times(1)).deleteCartItemsAfterSaveOrder();
     }

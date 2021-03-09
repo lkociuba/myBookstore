@@ -79,10 +79,10 @@ public class OrderServiceImpl implements OrderService {
 
         List<Order> loggedUserOrderList = new ArrayList<>();
         for (Order order : orderList) {
-            if (order.getId().equals(loggedUserId)) {
+            if (order.getUser().getId().equals(loggedUserId)) {
                 loggedUserOrderList.add(order);
             }
         }
-        return orderList;
+        return loggedUserOrderList;
     }
 }
