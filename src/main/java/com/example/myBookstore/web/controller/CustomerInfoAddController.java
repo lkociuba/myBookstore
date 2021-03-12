@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("customerInfoAdd")
+@RequestMapping("customerInfo")
 public class CustomerInfoAddController {
 
     @Autowired
@@ -39,6 +39,6 @@ public class CustomerInfoAddController {
         }
 
         customerService.saveCustomerInfoToCartSummary(customerInfoAddDto);
-        return "redirect:/customerInfoAdd?success";
+        return "redirect:/customerInfo?success";
     }
 }

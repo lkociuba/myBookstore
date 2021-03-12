@@ -22,7 +22,7 @@ public class CartController {
     @Autowired
     private UserServiceImpl userService;
 
-    @GetMapping("/cart")
+    @GetMapping("/shoppingCart")
     public String showCart(ModelMap model) {
         model.addAttribute("cart", cartService.getCartItems());
         model.addAttribute("calculatedPrice", cartService.calculatedPrice());
@@ -35,34 +35,34 @@ public class CartController {
             return "redirect:/login";
         }
         cartService.addCartItem(bookId);
-        return "redirect:/cart";
+        return "redirect:/shoppingCart";
     }
 
     @GetMapping("/page/buyBook/{bookId}")
     public String addBookToShoppingCartFromPaginatedPage(@PathVariable(value = "bookId") Long bookId, ModelMap model) {
         cartService.addCartItem(bookId);
-        return "redirect:/cart";
+        return "redirect:/shoppingCart";
     }
 
     @GetMapping("deleteCartItem/{cartItemId}")
     public String deleteCartItemFromShoppingCart(@PathVariable(value = "cartItemId") Long cartItemId, ModelMap model) {
         cartService.deleteCartItem(cartItemId);
-        return "redirect:/cart";
+        return "redirect:/shoppingCart";
     }
 
     @GetMapping("/decreaseCartItemQuantity/{cartItemId}")
     public String decreaseCartItemQuantity(@PathVariable(value = "cartItemId") Long cartItemId, ModelMap model) {
         cartService.decreaseCartItemQuantity(cartItemId);
-        return "redirect:/cart";
+        return "redirect:/shoppingCart";
     }
 
     @GetMapping("/increaseCartItemQuantity/{cartItemId}")
     public String increaseCartItemQuantity(@PathVariable(value = "cartItemId") Long cartItemId, ModelMap model) {
         cartService.increaseCartItemQuantity(cartItemId);
-        return "redirect:/cart";
+        return "redirect:/shoppingCart";
     }
 
-    @GetMapping("/cartSummary")
+    @GetMapping("/shoppingCartSummary")
     public String showCartSummary(ModelMap model) {
         model.addAttribute("cart", cartService.getCartItems());
         model.addAttribute("calculatedPrice", cartService.calculatedPrice());

@@ -19,26 +19,15 @@ public class Order implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @NotNull
     private int orderNumber;
-
-    @NotNull
     private double calculatedPrice;
+    private String customerName;
+    private String customerAddress;
+    private String customerEmail;
+    private String customerPhone;
 
     @CreationTimestamp
     private LocalDateTime createdTime;
-
-    @Column(length = 255, nullable = false)
-    private String customerName;
-
-    @Column(length = 255, nullable = false)
-    private String customerAddress;
-
-    @Column(length = 255, nullable = false)
-    private String customerEmail;
-
-    @Column(length = 255, nullable = false)
-    private String customerPhone;
 
     public Order() {
     }
@@ -112,7 +101,6 @@ public class Order implements Serializable {
     public void setCustomerPhone(String customerPhone) {
         this.customerPhone = customerPhone;
     }
-
 
     public User getUser() {
         return user;

@@ -24,7 +24,7 @@
             <h2>Add Customer info to Cart summary</h2>
             <h3>You can create only 1 CustomerInfo. Next attempt will transfer you to CartSummary side.</h3>
 
-            <form th:action="@{/customerInfoAdd}" method="post" th:object="${customerInfo}">
+            <form th:action="@{/customerInfo}" method="post" th:object="${customerInfo}">
 
                 <div class="form-group">
                     <label class="control-label" for="customerName"> Customer Name </label>
@@ -62,7 +62,7 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-success" href="bookList">Save CustomerInfo to CartSummary
                     </button>
-                    <span>Go to <a href="/" th:href="@{/cartSummary}">Cart Sumary</a></span>
+                    <span>Go to <a href="/" th:href="@{/shoppingCartSummary}">Cart Sumary</a></span>
                 </div>
 
             </form>

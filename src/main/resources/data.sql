@@ -33,6 +33,3 @@ INSERT INTO BOOK (book_id, name, description, price, created_time)
 values (40007, 'Geographical atlas', 'A simple atlas for beginners.', '79.99', sysdate);
 INSERT INTO BOOK (book_id, name, description, price, created_time)
 values (40008, 'Fantasy book', 'Never Ending story.', '89.99', sysdate);
-
-INSERT INTO CART_ITEM(cart_item_id, book_id, quantity, user_id)
-values (80000, 40000, 1, 1003 );

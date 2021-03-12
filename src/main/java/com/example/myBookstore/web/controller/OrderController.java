@@ -15,10 +15,10 @@ public class OrderController {
     @GetMapping("/saveOrder")
     public String showCart(ModelMap model) {
         orderService.saveOrder();
-        return "redirect:/orderFinalize";
+        return "redirect:/finalizeOrder";
     }
 
-    @GetMapping("/orderFinalize")
+    @GetMapping("/finalizeOrder")
     public String showSavedOrderNumber(ModelMap model) {
         model.addAttribute("orderNumber", orderService.getOrderMaxNumber());
         return "orderFinalize";

@@ -3,6 +3,7 @@ package com.example.myBookstore.service;
 import com.example.myBookstore.dao.OrderItemRepository;
 import com.example.myBookstore.dao.OrderRepository;
 import com.example.myBookstore.entity.*;
+import com.example.myBookstore.web.builder.OrderBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,7 +52,9 @@ public class OrderServiceImpl implements OrderService {
         double calculatedPrice = cartService.calculatedPrice();
         CustomerInfo customerInfo = customerService.findCustomerInfo();
 
-        Order order = new Order(user, orderNumber, calculatedPrice, customerInfo);
+        OrderBuilder orderBuilder = new OrderBuilder().setOrderNumber(orderNumber).setUser(user)
+                .setCalculatedPrice(calculatedPrice).setCustomerInfo(customerInfo);
+        Order order = orderBuilder.getOrder();
         orderRepository.save(order);
 
 

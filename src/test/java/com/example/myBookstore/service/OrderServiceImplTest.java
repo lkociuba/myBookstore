@@ -2,11 +2,9 @@ package com.example.myBookstore.service;
 
 import com.example.myBookstore.dao.OrderItemRepository;
 import com.example.myBookstore.dao.OrderRepository;
-import com.example.myBookstore.entity.CartItem;
 import com.example.myBookstore.entity.CustomerInfo;
 import com.example.myBookstore.entity.Order;
 import com.example.myBookstore.entity.User;
-import com.example.myBookstore.model.Cart;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,7 +17,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -40,9 +37,6 @@ class OrderServiceImplTest {
 
     @Mock
     private CustomerServiceImpl customerService;
-
-    @Mock
-    private OrderItemRepository orderItemRepoMock;
 
     @InjectMocks
     private OrderServiceImpl orderService;
