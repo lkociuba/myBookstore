@@ -41,5 +41,4 @@ public class CustomerInfoAddController {
         customerService.saveCustomerInfoToCartSummary(customerInfoAddDto);
         return "redirect:/customerInfo?success";
     }
-
 }
