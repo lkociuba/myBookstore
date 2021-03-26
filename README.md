@@ -29,13 +29,13 @@ For Salesperson:
 * [Setup](#setup)
 
 ## General info
-This project is simple Lorem ipsum dolor generator.
+This is a simple guess gender detection project.
 	
 ## Technologies
 Project is created with:
-* Lorem version: 12.3
-* Ipsum version: 2.33
-* Ament library version: 999
+* Java version: 11
+* Maven
+* Spring Boot version: 2.4.4
 	
 ## Setup
 To run this project, install it locally using npm:
