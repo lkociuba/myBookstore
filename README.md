@@ -44,5 +44,5 @@ To run this project:
 $ git clone https://github.com/lkociuba/myBookstore.git
 ```
 ```
-$ docker pull lukaszkociuba/myBookstore:v1.0.0
+$ docker pull lukaszkociuba/my-bookstore:v1.0.0
 ```
