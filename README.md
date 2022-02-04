@@ -38,10 +38,9 @@ Project is created with:
 * Spring Boot version: 2.4.4
 	
 ## Setup
-To run this project, install it locally using npm:
+To run this project:
 
 ```
-$ cd ../lorem
-$ npm install
-$ npm start
+$ git clone https://github.com/lkociuba/myBookstore.git
+$ docker pull lukaszkociuba/myBookstore:v1.0.0
 ```
